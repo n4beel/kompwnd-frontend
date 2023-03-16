@@ -1,0 +1,28 @@
+:host {
+    flex: 1 0 0px;
+    width: 100%;
+    display: none;
+    padding: 0px 15px;
+    overflow: auto;
+
+    position: relative;
+    top: 50px;
+    opacity: 0;
+    transition: top .2s .1s, opacity .2s .1s;
+    transition-delay: .1s;
+    transition-timing-function: ease-in;
+    
+
+    &.animating { 
+        display: block;
+    }
+
+    &.expanded {
+        display: block;
+        top: 0px;
+        opacity: 1;
+
+        transition: top .2s, opacity .2s;
+        transition-timing-function: ease-out;
+    }
+}

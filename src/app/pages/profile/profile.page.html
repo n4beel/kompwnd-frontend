@@ -1,0 +1,150 @@
+<div class="fluid-container">
+    <div class="row  justify-content-md-center">
+        <div class="card">
+            <div class="card-body">
+                <div *ngIf="auth.user.username==user">
+                    <button class="btn btn-white" *ngIf="button=='edit'" (click)="button='save'">
+                        Edit
+                    </button>
+                    <button class="btn btn-white" *ngIf="button=='save' && !loading" (click)="onCancel()">
+                        Cancel
+                    </button>
+                    <button class="btn btn-white save" *ngIf="button=='save' && !loading" (click)="onSubmit()">
+                        Save
+                    </button>
+                    <spinner *ngIf="profileLoading"></spinner>
+                </div>
+                <div class="image-container">
+                    <mat-icon svgIcon="player" *ngIf="!profile.user.imgPath && !newImg"></mat-icon>
+                    <img [src]="profile.user.imgPath" *ngIf="profile.user.imgPath && !newImg">
+                    <img [src]="newImg.preview" *ngIf="newImg">
+                </div>
+                <input class="image-input" type="file" id="img" name="img" accept="image/*" *ngIf="button == 'save'" (change)="preview($event)">
+
+                <h1 class="username">{{user}}</h1>
+                
+                <p *ngIf="button == 'edit'">{{profile.user.description}}</p>
+                <div *ngIf="button == 'save'">
+                    <textarea class="description" [(ngModel)]="profile.user.description" placeholder="Enter a description"></textarea>
+                    <span class="character">{{255 - profile.user.description.length}}</span>
+                </div>
+                
+                <audio controls *ngIf="button == 'edit' && profile.user.audioPath != ''">
+                    <source [src]="profile.user.audioPath">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="audio-upload" *ngIf="button == 'save'">
+                    <span>Upload an audio file</span>
+                    <input type="file" id="audio" name="audio" accept="audio/*" *ngIf="button=='save'" (change)="audioUpload($event)">
+                </div>
+                
+                <div class="alert alert-danger mt-3 error-class" role="alert" *ngIf="submitMessage">
+                    {{submitMessage}}
+                </div>
+
+                <h2 class="header">Current Rank: {{profile.user.rank}}</h2>
+                <h2 class="header">Current Fresh Deposit: {{profile.freshDeposit}}</h2>
+                <h2 class="header">Current Team Deposit with Column Rule: {{profile.teamDepositRule}}</h2>
+                <div class="flex-container">
+                    <!-- Criteria -->
+                    <div class="section-container">
+                        <div class="box">
+                            <div class="inner-header">
+                                <h2 class="subheader2">Criteria</h2>
+                            </div>
+                            <p class="rank-description">Ranks are based upon your deposits this month minus your rolls. Ranks are reset at the beginning of the month EST. Each generational column can only contribute at most 34% of the team deposit.</p>
+                            <div>
+                                <div *ngFor="let criteria of profile.criterias | keyvalue">
+                                    <h3 class="subheader">{{criteria.key}}</h3>
+                                    <p>Minimum Deposit: {{criteria.value.deposit}}</p>
+                                    <!-- <p>Minimum Direct Referral Deposit: {{criteria.value.referral}}</p> -->
+                                    <p>Minimum Total Team Deposit: {{criteria.value.team}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Global Stars -->
+                    <div class="section-container">
+                        <div class="box">
+                            <div class="inner-header">
+                                <h2 class="subheader2">Global Stars</h2>
+                            </div>
+                            <ol>
+                                <li *ngFor="let star of profile.globalStars">
+                                    <p><a [routerLink]="'/profile/' + star.user">{{star.user}}</a></p>
+                                    <p>Deposit: {{star.deposit.toFixed(4)}} KPW</p>
+                                    <p>Referral Deposit: {{star.referralDeposit.toFixed(4)}} KPW</p>
+                                    <audio controls *ngIf="star.audio">
+                                        <source [src]="star.audio">
+                                    </audio>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+    
+                    <!-- Global Leaders -->
+                    <div class="section-container">
+                        <div class="box">
+                            <div class="inner-header">
+                                <h2 class="subheader2">Global Leaders for Rank: {{profile.user.rank}}</h2>
+                            </div>
+                            <spinner *ngIf="profile.leadersLoading"></spinner>
+                            <div *ngIf="!profile.leadersLoading">
+                                <ol>
+                                    <li *ngFor="let leader of profile.globalLeaders">
+                                        <p><a [routerLink]="'/profile/' + leader.user">{{leader.user}}</a></p>
+                                        <p>Deposit: {{leader.deposit.toFixed(4)}} KPW</p>
+                                        <p>Referral Deposit: {{leader.referralDeposit.toFixed(4)}} KPW</p>
+                                        <audio controls *ngIf="leader.audio">
+                                            <source [src]="leader.audio">
+                                        </audio>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="performance-table">
+                    <div class="section-container">
+                        <div class="box">
+                            <h1>Performance Table</h1>
+                            <div class="search-container">
+                                <div>
+                                    <label for="user">Username</label>
+                                    <input type="text" class="form-control" id="user" placeholder="Username" [(ngModel)]="userSearch">
+                                </div>
+                                <div>
+                                    <label for="startDate">Start Date</label>
+                                    <input type="date" id="startDate" min="{{minDate}}" max="{{today}}" class="form-control" [(ngModel)]="startDate">
+                                </div>
+                                <div>
+                                    <label for="endDate">End Date</label>
+                                    <input type="date" id="endDate" min="{{minDate}}" max="{{today}}" class="form-control" [(ngModel)]="endDate">
+                                </div>
+                                <div>
+                                    <label for="limit">Limit (Optional)</label>
+                                    <input type="number" class="form-control" id="limit" min="1" placeholder="Limit" [(ngModel)]="limit">
+                                </div>
+                            </div>
+                            <button class="btn btn-white mt-3" (click)="onSearch()">Search for a user</button>
+                            <div class="alert alert-danger mt-3 error-class" role="alert" *ngIf="searchMessage">
+                                {{searchMessage}}
+                            </div>
+
+                            <div class="card-body">
+                                <spinner *ngIf="performanceLoading"></spinner>
+                                <div *ngIf="loadingLong && performanceLoading" style="text-align: center">You may need to set a limit if it is taking long.</div>
+                                <performance-table
+                                  *ngIf="performanceTable != null && !performanceLoading"
+                                  [team]="performanceTable"
+                                ></performance-table>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

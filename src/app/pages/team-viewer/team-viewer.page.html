@@ -1,0 +1,278 @@
+<div class="fluid-container" *ngIf="isTeamViewer">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex">
+            <h1 class="mt-2">Team Viewer</h1>
+            <button class="btn btn-white ml-2" (click)="onAnalytics()">
+              Analytics
+            </button>
+          </div>
+
+          <label for="">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Username"
+            [(ngModel)]="username"
+          />
+          <div class="input-group mt-2">
+            <mat-slide-toggle
+              name="deposits"
+              id="deposits"
+              (change)="onDeposits($event)"
+              [(ngModel)]="deposits"
+              >Show Deposits</mat-slide-toggle
+            >
+          </div>
+          <button class="btn btn-white mt-3" (click)="onGetTeam()">
+            View Team
+          </button>
+          <div class="alert alert-danger mt-3" role="alert" *ngIf="message">
+            {{message}}
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-sm-6 order-md-2">
+              <div class="komp-items">
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_coins"></mat-icon>
+                  <h3>Available</h3>
+                  <h2>
+                    {{ available ? available.value + ' ' +
+                    deposit.deposit.symbol: '...' }}
+                  </h2>
+                  <p>{{ available ? convertedAvailable : '...' }}</p>
+                </div>
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_bank"></mat-icon>
+                  <h3>Deposits</h3>
+                  <h2>
+                    {{ (deposit && deposit.deposit ? deposit.deposit.value + ' '
+                    + deposit.deposit.symbol: '...') }}
+                  </h2>
+                  <p>
+                    {{ (deposit && deposit.deposit ? convertedDeposit : '...')
+                    }}
+                  </p>
+                </div>
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_wallet"></mat-icon>
+                  <h3>Claimed</h3>
+                  <h2>
+                    {{ (deposit && deposit.divspayed ? deposit.divspayed.value +
+                    ' ' + deposit.deposit.symbol: '...') }}
+                  </h2>
+                  <p>
+                    {{ (deposit && deposit.divspayed ? convertedDivspayed :
+                    '...') }}
+                  </p>
+                </div>
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_hands"></mat-icon>
+                  <h3>Rewards / Match</h3>
+                  <h2>
+                    {{ (deposit && deposit.rewards ? deposit.rewards.value :
+                    '...') }} / {{ (deposit && deposit.match ?
+                    deposit.match.value + ' ' + deposit.deposit.symbol: '...')
+                    }}
+                  </h2>
+                  <p>
+                    {{ (deposit && deposit.rewards ?
+                    convertedRewards.substring(0, convertedRewards.length-3) :
+                    '...') }} / {{ (deposit && deposit.match ? convertedMatch :
+                    '...') }}
+                  </p>
+                </div>
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_coins"></mat-icon>
+                  <h3>Max Payout</h3>
+                  <h2>
+                    {{ (deposit && deposit.maxdiv ? deposit.maxdiv.value :
+                    '...') }}
+                  </h2>
+                  <p>
+                    {{ (deposit && deposit.maxdiv ? convertedMaxdiv : '...') }}
+                  </p>
+                </div>
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_team"></mat-icon>
+                  <h3>Team</h3>
+                  <h2>
+                    {{ ( team ? team.buddies.length : '...') }} / {{ teamTotal
+                    }}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 order-md-1">
+              <div class="card" *ngIf="team != null || loading">
+                <div class="card-body">
+                  <spinner *ngIf="loading"></spinner>
+                  <team-viewer
+                    *ngIf="team != null && !loading"
+                    [team]="team"
+                    [deposit]="deposits"
+                  ></team-viewer>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Analytics Code-->
+
+<div class="fluid-container" *ngIf="isAnalytic">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex">
+            <h1 class="mt-2">Analytics</h1>
+            <button class="btn btn-white ml-2" (click)="onTeamviewer()">
+              Team Viewer
+            </button>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+                <label for="">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Username"
+                  [(ngModel)]="username"
+                />
+              </div>
+              <div class="col-lg-4">
+                <label for="">Start Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="StartDate"
+                  [(ngModel)]="startDate"
+                  
+                />
+              </div>
+              <div class="col-lg-4">
+                <label for="">End Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="EndDate"
+                  [(ngModel)]="endDate"
+                  
+                />
+              </div>
+    
+          </div>
+          <!-- <div class="input-group mt-2">
+            <mat-slide-toggle
+              name="deposits"
+              id="deposits"
+              (change)="onDeposits($event)"
+              [(ngModel)]="deposits"
+              >Show Deposits</mat-slide-toggle
+            >
+          </div> -->
+          <button class="btn btn-white mt-3" (click)="onGetAnalytics()">
+            View Analytics
+          </button>
+          <div class="alert alert-danger mt-3" role="alert" *ngIf="message">
+            {{message}}
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-sm-6 order-md-2">
+              <div class="komp-items">
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_coins"></mat-icon>
+                  <h3>Available</h3>
+                  <h2>
+                    {{ available ? available.value + ' ' +
+                    deposit.deposit.symbol: '...' }}
+                  </h2>
+                  <p>{{ available ? convertedAvailable : '...' }}</p>
+                </div>
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_bank"></mat-icon>
+                  <h3>Deposits</h3>
+                  <h2>
+                    {{ (deposit && deposit.deposit ? deposit.deposit.value + ' '
+                    + deposit.deposit.symbol: '...') }}
+                  </h2>
+                  <p>
+                    {{ (deposit && deposit.deposit ? convertedDeposit : '...')
+                    }}
+                  </p>
+                </div>
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_wallet"></mat-icon>
+                  <h3>Claimed</h3>
+                  <h2>
+                    {{ (deposit && deposit.divspayed ? deposit.divspayed.value +
+                    ' ' + deposit.deposit.symbol: '...') }}
+                  </h2>
+                  <p>
+                    {{ (deposit && deposit.divspayed ? convertedDivspayed :
+                    '...') }}
+                  </p>
+                </div>
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_hands"></mat-icon>
+                  <h3>Rewards / Match</h3>
+                  <h2>
+                    {{ (deposit && deposit.rewards ? deposit.rewards.value :
+                    '...') }} / {{ (deposit && deposit.match ?
+                    deposit.match.value + ' ' + deposit.deposit.symbol: '...')
+                    }}
+                  </h2>
+                  <p>
+                    {{ (deposit && deposit.rewards ?
+                    convertedRewards.substring(0, convertedRewards.length-3) :
+                    '...') }} / {{ (deposit && deposit.match ? convertedMatch :
+                    '...') }}
+                  </p>
+                </div>
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_coins"></mat-icon>
+                  <h3>Max Payout</h3>
+                  <h2>
+                    {{ (deposit && deposit?.maxdiv ? deposit.maxdiv.value :'...') }}
+                  </h2>
+                  <p>
+                    {{ (deposit && deposit?.maxdiv ? convertedMaxdiv : '...') }}
+                  </p>
+                </div>
+                <div class="komp-item">
+                  <mat-icon svgIcon="kpw_team"></mat-icon>
+                  <h3>Team</h3>
+                  <h2>
+                    {{ ( team ? team?.buddies?.length : '...') }} / {{ teamTotal}}
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 order-md-1">
+              <div class="card" *ngIf="teamAnalytics != null || loading">
+                <div class="card-body">
+                  <spinner *ngIf="loading"></spinner>
+                  <analytics-viewer
+                    *ngIf="teamAnalytics != null && !loading"
+                    [team]="teamAnalytics"
+                    [deposit]="deposits"
+                    first=true
+                  ></analytics-viewer>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

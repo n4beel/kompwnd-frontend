@@ -1,0 +1,70 @@
+<div class="fluid-container">
+    <div class="row">
+        <div class="col-sm-12">
+            
+            <div class="card">
+                <div class="card-body">
+                    <h1>Payer Lookup</h1>
+                    <input type="text" placeholder="Player Username" class="form-control" [(ngModel)]="player">
+
+                    <button class="btn btn-white mt-3" (click)="getPlayer()">Search</button>
+
+                    <div class="alert alert-danger mt-3" role="alert" *ngIf="message">
+                        {{message}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3" *ngIf="depositLoaded">
+        <div class="col-sm-6">
+            <div class="komp-items">
+                <div class="komp-item">
+                    <mat-icon svgIcon="kpw_coins"></mat-icon>
+                    <h3>Available</h3>
+                    <h2>{{ deposit.divs ? deposit.divs.value.toFixed(4) : '...' }}</h2>
+                    <p>KPW</p>
+                </div>
+                <div class="komp-item">
+                    <mat-icon svgIcon="kpw_bank"></mat-icon>
+                    <h3>Deposits</h3>
+                    <h2>{{ (deposit.deposit ? deposit.deposit.value.toFixed(4) : '...') }}</h2>
+                    <p>KPW</p>
+                </div>
+                <div class="komp-item">
+                    <mat-icon svgIcon="kpw_wallet"></mat-icon>
+                    <h3>Claimed</h3>
+                    <h2>{{ (deposit.divsPayed ? deposit.divsPayed.value.toFixed(4) : '...') }}</h2>
+                    <p>KPW</p>
+                </div>
+                <div class="komp-item">
+                    <mat-icon svgIcon="kpw_hands"></mat-icon>
+                    <h3>Rewards / Match</h3>
+                    <h2>{{ (rewards ? rewards.value.toFixed(4) : '...') }} / {{ (match ? match.value.toFixed(4) : '...') }}</h2>
+                    <p>KPW</p>
+                </div>
+                <div class="komp-item">
+                    <mat-icon svgIcon="kpw_coins"></mat-icon>
+                    <h3>Max Payout</h3>
+                    <h2>{{ (deposit.maxPay ? deposit.maxPay.value.toFixed(4) : '...') }}</h2>
+                    <p>KPW</p>
+                </div>
+                <div class="komp-item">
+                    <mat-icon svgIcon="kpw_team"></mat-icon>
+                    <h3>Team</h3>
+                    <h2>{{ ( team.direct ? team.direct : '...') }} / {{ team.total ? team.total : '...'}}</h2>
+                    <p>KPW</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Player Team</h2>
+                    <team-viewer [team]="buddies"></team-viewer>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

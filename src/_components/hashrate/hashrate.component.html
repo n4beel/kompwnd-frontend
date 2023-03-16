@@ -1,0 +1,12 @@
+<h4>{{ hashrate.toFixed(4) }}</h4>
+<div class="bar-container">
+    <div class="speed-bar">
+        <span class="bar" [ngStyle]="{'width': getRatePercent + '%'}"></span>
+        <div class="speed lower-speed">
+            0
+        </div>
+        <div class="speed upper-speed">
+            {{ getTopSpeed.toFixed(0) }}
+        </div>
+    </div>
+</div>

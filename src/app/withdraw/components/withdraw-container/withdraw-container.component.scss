@@ -1,0 +1,96 @@
+.containerWithdraw {
+  max-width: 611px;
+  margin: 40px auto;
+}
+
+.wrapperBoxWithDraw {
+  background: #25282D;
+  border-radius: 8px;
+  padding: 20px 18px 36px;
+}
+
+.wrapperBoxWithDraw ul {
+  padding: 0;
+  list-style: none;
+}
+
+.wrapperBoxWithDraw li h5 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+  padding: 0px 13px;
+}
+
+.wrapperBoxWithDraw li h5 span {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: #FFFFFF;
+}
+
+.wrapperBoxWithDraw li h5 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.wrapperBoxWithDraw hr {
+  background: rgba(255, 255, 255, 0.33);
+}
+
+.netAmmount h5 {
+  background: #191B1F;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 14px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+  margin-bottom: 26px;
+}
+
+.netAmmount button {
+  width: 100%;
+}
+
+.containerInnerWithDraw h3 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FFFFFF;
+}
+
+.wrapperBoxWithDraw li.platformFee h5 {
+  display: block !important;
+  padding-right: 0px !important;
+  text-align: left;
+}
+
+.wrapperBoxWithDraw li.platformFee {
+  display: flex;
+}
+
+.wrapperBoxWithDraw li.platformFee span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: #FFFFFF;
+  width: 50%;
+  padding-right: 15px;
+}

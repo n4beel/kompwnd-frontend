@@ -1,0 +1,47 @@
+<div class="mainSmallContainer">
+    <div class="container">
+        <h3>Deposit</h3>
+        <div class="boxWrapper">
+            <div class="inputWrapper">
+                <label>Amount</label>
+                <input type="number" type="number" placeholder="0.00"  appDigitDotOnly [(ngModel)]="usdDeposit"
+                (input)="input$.next($event.target.value)">
+                <span class="dollarPlaceholder">$</span>
+                <span class="rightPlaceholder"> ≈ {{kpwDeposit ? kpwDeposit: 0 | number : '1.4-4'}}  KPW</span>
+            </div>
+            <div *ngIf="!kpwDeposit && formSubmitted && usdDeposit < 0"> Deposit must be a positive value
+            </div>
+            <div class="currencyMethod">
+                <h4>Currency Method</h4>
+
+                <div class="radioSelector">
+                    <ng-container *ngFor="let currency of currencyList; let i = index">
+                        <div class="radioInputflag" [ngClass]="{'active': i === selectedIndex}"(click)="onSelect(i, currency)">
+                            <input type="radio" name="flag1">
+                            <label for="flag1"><img src="../../../../assets/images/svg2/{{currency.image}}">
+                              <span>
+                                <span class="largeContent">
+                                  {{currency.symbol}} <ng-container *ngIf="usdDeposit">{{currency.price * usdDeposit | precision: currency.precision }}</ng-container> <ng-container *ngIf="!usdDeposit">{{0 | precision: currency.precision}}</ng-container>
+                                </span>
+                                <span class="smallcontent">≈ $<ng-container *ngIf="usdDeposit">{{usdDeposit | number: '1.2-2' }}</ng-container> <ng-container *ngIf="!usdDeposit">{{0 | number: '1.2-2'}}</ng-container></span>
+                              </span>
+                            </label>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="alertWrapperInput" [ngClass]="{'active': showError}">
+                  <span class="closeAlert" (click)="showError=false"></span>
+                  <h4>{{errorHeading}} <span>{{errorMessage}}</span></h4>
+                </div>
+                <button class="PrimaryButton" (click)="openDialog()" [disabled]="depositDisable" [ngClass]="{'disabled': depositDisable || !usdDeposit}">Proceed</button>
+            </div>
+        </div>
+    </div>
+    <div  class="popupWrapper" [ngClass]="{'active': message }">
+      <div class="popup">
+        <img src="../../../../assets/images/tick.png" alt="">
+        <p>{{message}}</p>
+        <span class="red">Note: Available Dividend should be $50 to withdraw total amount</span>
+      </div>
+    </div>
+  </div>

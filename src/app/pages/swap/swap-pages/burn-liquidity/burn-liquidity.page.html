@@ -1,0 +1,36 @@
+<div class="fluid-container">
+    <div class="row  justify-content-md-center">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Burn Liquidity</h1>
+                    <div class="space-between"><b>Amount</b> <p>{{(omnikpwBalance ? omnikpwBalance.value.toFixed(omnikpwBalance.precision) + ' ' + omnikpwBalance.symbol : '0.0000 OMNIKPD')}}</p></div>
+    
+                    <div class="input-like">
+                        <input type="number" placeholder="0.0000" [(ngModel)]="burnValue" (input)="onCalcReturn()">
+                        <span>OMNIKPD</span>
+                    </div>
+
+                    <div class="card mt-3" *ngIf="returnTokens.length">
+                        <div class="card-body sbs">
+                            <div>
+                                <p>Estimated Return</p>
+                            </div>
+                            <div>
+                                <p class="token" *ngFor="let tok of returnTokens">{{tok.value}} {{tok.symbol}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-white mt-3" (click)="onBurnLiquidity()">Burn</button>
+
+
+                    <div class="alert alert-danger mt-3" role="alert" *ngIf="message">
+                        {{message}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

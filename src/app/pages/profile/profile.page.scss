@@ -1,0 +1,149 @@
+:host {
+    flex: 1 0 0px;
+    max-height: 100%;
+    overflow-y: hidden;
+
+    audio {
+        width: 100%;
+    }
+
+    .card-body {
+        min-width: 300px;
+    
+        .save {
+            float: right;
+        }
+        
+        .image-container {
+            background-color: white;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        
+            mat-icon {
+                fill: black;
+                display: flex;
+                align-items: center;
+                margin: auto;
+                height: 80px;
+                width: 80px;
+            }
+        
+            img {
+                border-radius: 50%;
+                height: 95px;
+                width: 95px;
+                margin: auto;
+            }
+        }
+        
+        .image-input {
+            margin-bottom: 20px;
+        }
+        
+        .username {
+            text-align: center;
+            margin: auto;
+        }
+        
+        .flex-container {
+            display: flex;
+        }
+
+        .section-container {
+            margin: 10px;
+            
+            .header {
+                text-align: center;
+                font-size: 18px;
+                margin-bottom: 0;
+            }
+            
+            .box {
+                border: 2px solid white;
+                padding: 1.25rem;
+
+                .inner-header {
+                    display: flex;
+                    align-items: center;
+
+                    .subheader2 {
+                        margin: 0;
+                        font-size: 18px;
+                    }
+                }
+
+                .rank-description {
+                    max-width: 300px;
+                }
+    
+                .subheader {
+                    text-align: center;
+                }
+
+                ol {
+                    padding: 20px;
+
+                    li {
+                        margin-bottom: 30px;
+                        font-size: 14px;
+
+                        p {
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+
+                .search-container {
+                    display: flex;
+
+                    label {
+                        margin: 0 5px;
+                    }
+                    
+                    .form-control {
+                        margin-right: 15px;
+                        width: auto;
+                    }
+                }
+            }
+        }
+        
+        .description {
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .character {
+            font-size: 10px;
+            float: right;
+        }
+        
+        audio {
+            display: block;
+        }
+        
+        .audio-upload {
+            margin-top: 20px;
+        }
+        
+        input {
+            display: block;
+        }
+
+        button.toggle {
+            background-color: transparent;
+            border: 0px;
+            border-radius: 4px;
+            color: white;
+            margin-right: 5px;
+    
+            &:hover {
+                background-color: rgba(255,255,255, 0.1);
+            }
+        }
+    }
+}

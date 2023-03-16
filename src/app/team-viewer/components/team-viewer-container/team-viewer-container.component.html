@@ -1,0 +1,23 @@
+<div class="teamViwerContainer">
+  <div class="containerInnerTeam">
+    <h3>Team Viewer</h3>
+    <div class="boxWrapeprteam">
+      <div class="tablWrppaer">
+        <ul>
+          <li (click)="toggle(false)">
+            <a   [ngClass]="!isTeamStructureActive ? 'active' : ''">Reporting</a>
+          </li>
+          <li (click)="toggle(true)">
+            <a  [ngClass]="isTeamStructureActive ? 'active' : ''">Team Structure</a>
+          </li>
+        </ul>
+        <ng-container *ngIf="!isTeamStructureActive;else teamStructure">
+            <app-reporting></app-reporting>
+        </ng-container>
+        <ng-template #teamStructure>
+            <app-team-structure [showConnectedUserTeam]="showConnectedUserTeam"></app-team-structure>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

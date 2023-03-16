@@ -1,0 +1,191 @@
+.depositWrapper {
+  max-width: 741px;
+  margin: 40px auto 30px;
+}
+
+
+
+
+
+
+.mainSmallContainer {
+	max-width: max-content;
+	margin: 38px auto 0px;
+  h3 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+  }
+}
+
+
+.inputWrapper label {
+	display: block;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
+	margin-bottom: 11px;
+}
+
+.inputWrapper input {
+	background: #191B1F;
+	border-radius: 8px;
+	display: block;
+	width: 100%;
+	height: 52px;
+	border: none;
+	padding: 0px 120px 0px 50px;
+	outline: none !important;
+	color: #fff;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
+	-webkit-appearence: none;
+}
+
+.inputWrapper {
+	position: relative;
+}
+
+span.rightPlaceholder {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	text-align: right;
+	color: rgba(255, 255, 255, 0.69);
+	position: absolute;
+	bottom: 14px;
+	right: 20px;
+}
+
+span.dollarPlaceholder {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	text-align: right;
+	color: rgba(255, 255, 255, 0.69);
+	position: absolute;
+	left: 20px;
+	bottom: 14px;
+}
+
+.currencyMethod {
+	margin: 29px 0px 0px;
+}
+
+.currencyMethod h4 {
+	margin-bottom: 11px;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
+}
+
+.radioSelector input {
+	display: none;
+}
+
+.radioInputflag {
+	width: 183px;
+	height: 43px;
+	background: #191B1F;
+	border-radius: 8px;
+	border: 2px solid #191B1F;
+	transition: 0.7s all;
+	cursor: pointer;
+}
+
+.radioSelector {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 13px;
+}
+
+.radioInputflag label {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 18px;
+	color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	margin: 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    height: 100%;
+    padding:0px 10px;
+    cursor: pointer;
+}
+
+.radioInputflag img {
+	margin-right: 8px;
+}
+
+.radioInputflag:hover {
+	background: none;
+}
+.radioInputflag.active:hover {
+  background: none;
+}
+.currencyMethod .PrimaryButton {
+	margin-top: 27px;
+	width: 100%;
+	border: none;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
+}
+.currencyMethod .PrimaryButton:hover {
+	text-decoration: underline;
+}
+.mainSmallContainer {
+	max-width: max-content;
+	margin: 38px auto 0px;
+}
+
+.mainSmallContainer h3 {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 30px;
+	color: #FFFFFF;
+	margin-bottom: 12px;
+}
+
+.boxWrapper {
+	min-width: 611px;
+	min-height: 473px;
+	background: #25282D;
+	border-radius: 8px;
+	max-width: 611px;
+	margin: auto;
+	padding: 18px;
+}
+
+.radioInputflag label span.smallcontent {
+  font-size: 8px;
+  line-height: normal;
+  color: grey;
+}

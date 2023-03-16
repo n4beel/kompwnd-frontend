@@ -1,0 +1,178 @@
+<div class="top-header">
+  <img src="assets/images/kompwnd-logo_main.png" alt="" class="logo" />
+
+  <div class="right-menu">
+    <!-- <button class="migrate" *ngIf="migration" (click)="openMigrate()">
+            Migrate Account
+        </button> -->
+
+        <button class="credit-card tool-tip" routerLink="/booking">
+            <mat-icon svgIcon="credit_card"></mat-icon>
+            <span class="tooltiptext below">Book a Webinar</span>
+        </button>
+
+    <button
+      class="referral tool-tip"
+      *ngIf="auth.user"
+      aria-label="Referral Link"
+      (click)="onCopy()"
+    >
+      <mat-icon svgIcon="add_user"></mat-icon>
+      <span class="tooltiptext below">Copy Referral Link</span>
+    </button>
+
+        <!-- <div class="account" *ngIf="auth.user">
+            <div class="left">
+                <p><b>Wallet:</b> {{auth.user.username}}</p>
+                <p><b>Balance:</b> {{ (alaBalance? alaBalance.value.toFixed(alaBalance.precision) + ' ' + alaBalance.symbol : '0.0000 ALA') }} </p>
+            </div>
+            
+        </div>
+
+        <button mat-button *ngIf="!auth.user" (click)="onLogin()">
+            Connect Wallet
+            <mat-icon svgIcon="playercheck"></mat-icon>
+        </button>
+
+        <button class="menu-button" mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon svgIcon="menu"></mat-icon>
+        </button> -->
+    <div class="account" *ngIf="auth.user">
+      <div class="left">
+        <p><b>Wallet:</b> {{ auth.user.username }}</p>
+        <p>
+          <b>Balance:</b>
+          {{
+            alaBalance
+              ? alaBalance.value.toFixed(alaBalance.precision) +
+                " " +
+                alaBalance.symbol
+              : "0.0000 ALA"
+          }}
+        </p>
+      </div>
+      <button class="profile tool-tip" routerLink="/profile/{{auth.user.username}}">
+        <mat-icon svgIcon="player" *ngIf="!profile.headerImage"></mat-icon>
+        <img [src]="profile.headerImage" *ngIf="profile.headerImage">
+        <span class="tooltiptext below">Profile</span>
+    </button>
+    </div>
+
+    <span *ngIf="!auth.user">
+      <button mat-button (click)="onRedirect()">Register</button>
+      /
+      <button mat-button (click)="onLogin()">
+        Connect Wallet
+        <mat-icon svgIcon="playercheck"></mat-icon>
+      </button>
+    </span>
+
+    <button class="menu-button" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon svgIcon="menu"></mat-icon>
+    </button>
+  </div>
+</div>
+<mat-menu #menu="matMenu" yPosition="below">
+  <div class="menu-hide">
+    <button mat-menu-item routerLink="/kompwnd">
+      <mat-icon svgIcon="kompwnd"></mat-icon>
+      <span>Kompwnd</span>
+    </button>
+    <button mat-menu-item routerLink="/kpw-swap">
+      <mat-icon svgIcon="swap"></mat-icon>
+      <span>KPW Swap</span>
+    </button>
+    <button mat-menu-item routerLink="/mine">
+      <mat-icon svgIcon="player"></mat-icon>
+      <span>KPW Mining</span>
+    </button>
+    <!-- <button mat-menu-item routerLink="lookup">
+            <mat-icon svgIcon="player"></mat-icon>
+            <span>Player Lookup</span>
+        </button> -->
+    <button mat-menu-item routerLink="/teamviewer">
+      <mat-icon svgIcon="team"></mat-icon>
+      <span>Team Viewer</span>
+    </button>
+    <button mat-menu-item routerLink="/airdrops">
+      <mat-icon svgIcon="airdrop"></mat-icon>
+      <span>AirDrops</span>
+    </button>
+    <hr />
+  </div>
+  <button mat-menu-item (click)="onLogout()" *ngIf="auth.active">
+    <span>Disconnect Wallet</span>
+  </button>
+  <button mat-menu-item routerLink="/how">
+    <span>How It Works</span>
+  </button>
+  <button mat-menu-item routerLink="/booking">
+    <span>Booking</span>
+  </button>
+  <a mat-menu-item href="https://explore.alacritys.net/" target="_blank">
+    <span>Explorer</span>
+  </a>
+  <!-- <a mat-menu-item href="https://forum.alacritys.net/" target="_blank">
+        <span>Support</span>
+    </a> -->
+  <a mat-menu-item href="https://t.me/kompwnd" target="_blank">
+    <span>Telegram</span>
+  </a>
+</mat-menu>
+
+<div class="sub-header">
+  <span
+    class="slider"
+    [class.fast]="slideFast"
+    #slider
+    [ngStyle]="{ 'border-color': slideColor }"
+  ></span>
+  <a
+    routerLink="/kompwnd"
+    #routeLink
+    color="#161129"
+    routerLinkActive="active"
+    class="header-button"
+  >
+    <span>Kompwnd</span>
+  </a>
+  <a
+    routerLink="/kpw-swap"
+    #routeLink
+    color="#450d1f"
+    routerLinkActive="active"
+    class="header-button"
+  >
+    <span>KPW Swap</span>
+  </a>
+  <a
+    routerLink="/mine"
+    #routeLink
+    color="#700a16"
+    routerLinkActive="active"
+    class="header-button"
+  >
+    <span>KPW Mining</span>
+  </a>
+  <!-- <a routerLink="lookup" #routeLink color="" routerLinkActive="active"  class="header-button">
+        <span>Player Lookup</span>
+    </a> -->
+  <a
+    routerLink="/teamviewer"
+    #routeLink
+    color="#9d060c"
+    routerLinkActive="active"
+    class="header-button"
+  >
+    <span>Team Viewer</span>
+  </a>
+  <a
+    routerLink="/airdrops"
+    #routeLink
+    color="#ca0202"
+    routerLinkActive="active"
+    class="header-button"
+  >
+    <span>AirDrops</span>
+  </a>
+</div>

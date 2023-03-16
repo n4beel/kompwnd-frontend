@@ -1,0 +1,101 @@
+@keyframes logRunning {
+    0% {
+        content: "===              ===";
+    }
+    5% {
+        content: "====              ==";
+    }
+    10% {
+        content: "=====              =";
+    }
+    15% {
+        content: "======              ";  
+    }
+    20% {
+        content: " ======             "; 
+    }
+    25% {
+        content: "  ======            "; 
+    }
+    30% {
+        content: "   ======           ";
+    }
+    35% {
+        content: "    ======          ";
+    }
+    40% {
+        content: "     ======         ";
+    }
+    45% {
+        content: "      ======        "; 
+    }
+    50% {
+        content: "       ======       ";
+    }
+    55% {
+        content: "        ======      ";
+    }
+    60% {
+        content: "         ======     ";
+    }
+    65% {
+        content: "          ======    ";
+    }
+    70% {
+        content: "           ======   ";
+    }
+    75% {
+        content: "            ======  ";
+    }
+    80% {
+        content: "             ====== ";
+    }
+    85% {
+        content: "              ======";
+    }
+    90% {
+        content: "=              =====";
+    }
+    95% {
+        content: "==              ====";
+    }
+    100% {
+        content: "===              ===";
+    }
+}
+
+:host {
+    flex: 1 0 0px;
+    max-height: 100%;
+    overflow-y: hidden;
+
+    label {
+        color: white;
+    }
+
+    select {
+        option {
+            color: black;
+        }
+    }
+
+    .log {
+        max-height: 400px;
+        overflow-y: auto;
+        padding: 15px;
+        background-color: rgba(0,0,0,0.2);
+
+        p {
+            white-space: pre;
+        }
+
+        .log-running {
+            &::after {
+                display: block;
+                color: white;
+                content: "=";
+                animation: logRunning 5s linear infinite;
+            }
+        }
+    }
+}

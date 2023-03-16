@@ -1,0 +1,43 @@
+<div class="user-line" *ngIf="first && team?.deposit?.deposit?.value">
+    <button class="toggle" *ngIf="team?.buddies?.length" (click)="open = !open">
+        <span *ngIf="open">&#9660;</span>
+        <span *ngIf="!open">&#9658;</span>
+    </button>
+    
+    <h3 *ngIf="first">Level 0: {{team?.deposit?.deposit?.value}} {{team?.deposit?.deposit?.symbol}},&nbsp;<span>&#123;</span></h3>
+</div>
+
+<div *ngIf="first && !team?.deposit?.deposit?.value"><h3>No deposit has been found between this dates</h3></div>
+
+
+<div class="user-line">
+    <button class="toggle" style="display:none;" *ngIf="team?.buddies?.length || deposit" (click)="open = !open">
+        <span *ngIf="open">&#9660;</span>
+        <span *ngIf="!open">&#9658;</span>
+    </button>
+</div>
+<div [ngClass]="{'team': first}">
+    <div class="team-wrapper" *ngIf="team?.buddies?.length && open && !deposit">
+            <div class="team">
+                <analytics-viewer *ngFor="let team of team.buddies" [team]="team"></analytics-viewer>
+            </div>
+            <span>&#125;</span> 
+    </div>
+    <div class="team-wrapper" *ngIf="open && deposit">    
+            <div class="user-line">
+                <button class="toggle" *ngIf="team?.buddies?.length" (click)="tOpen = !tOpen">
+                    <span *ngIf="tOpen">&#9660;</span>
+                    <span *ngIf="!tOpen">&#9658;</span>
+                </button>
+                
+                <h3 [ngClass]="{'add-pad': !team?.buddies?.length}" *ngIf="team.calculatedDepositForSubBuddies">Level {{team.calculatedDepositDepth + 1}}: {{ (team.calculatedDepositForSubBuddies) && ((team.calculatedDepositForSubBuddies.toFixed(team.deposit.deposit.precision))  + ' ' + team.deposit.deposit.symbol)}},&nbsp;<span>&#123;</span> </h3>
+            </div>
+    
+            <div class="team-wrapper" *ngIf="team?.buddies?.length && tOpen">
+                <div class="team">
+                    <analytics-viewer *ngFor="let team of team?.buddies" [team]="team" [deposit]="deposit"></analytics-viewer>
+                </div>
+                <span>&#125;</span> 
+            </div>
+    </div>
+</div>

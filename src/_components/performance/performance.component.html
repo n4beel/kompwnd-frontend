@@ -1,0 +1,18 @@
+<div class="user-line">
+    <button class="toggle" (click)="open = !open">
+        <span *ngIf="open">&#9660;</span>
+        <span *ngIf="!open">&#9658;</span>
+    </button>
+    <div>
+        <h3 [ngClass]="{'add-pad': !team.buddies.length}"><a [routerLink]="'/profile/' + team.user">{{ team.user }}</a>{{ open ? ' &#123;' : ' &#123; ... &#125;' }}</h3>
+        <h3 *ngIf="open">Gen: {{ team.gen }}</h3>
+        <h3 *ngIf="open">Team Deposit: {{ team.teamDeposit.toFixed(4) }} KPW</h3>
+        <br>
+    </div>
+</div>
+<div class="team-wrapper" *ngIf="team.buddies.length && open">
+        <div class="team">
+            <performance-table *ngFor="let team of team.buddies" [team]="team"></performance-table>
+        </div>
+    <span>&#125;</span> 
+</div>

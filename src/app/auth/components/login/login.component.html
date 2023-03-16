@@ -1,0 +1,30 @@
+<div class="loginPoup" [formGroup]="loginForm">
+    <div class="containerLoginPopup">
+      <div class="innerWrapperContainerLoginPopup">
+        <h2>Connect Wallet <span class="crossContainer" (click)="onClose()"></span></h2>
+        <div class="inputWrapper">
+          <label for="">Mnemonic Code</label>
+          <textarea  formControlName="mnemonicCode"  name="Write your mnemonic code here..." placeholder="Write your mnemonic code here..." id="" cols="30" rows="10"></textarea>
+          <ngx-form-error [control]="loginForm.get('mnemonicCode')"></ngx-form-error>
+
+        </div>
+        <div class="inputWrapper">
+          <label for="Password">Password</label>
+          <input type="password" placeholder="write password here" formControlName="password">
+          <ngx-form-error [control]="loginForm.get('password')"></ngx-form-error>
+        </div>
+        <button class="PrimaryButton" (click)="onSubmit()" >Login</button>
+        <a href="https://www.alacrity.net/" target="_blank">Don't have wallet? <span>Sign up</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toastAlert" [ngClass]="{'active': alertMessage}">
+    <div class="alertToast">
+        <img src="../../../../assets/images/18.png">
+        <h5>
+            {{title}}
+            <span>{{alertMessage}}</span>
+        </h5>
+    </div>
+  </div>

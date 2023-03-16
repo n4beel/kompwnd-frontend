@@ -1,0 +1,13 @@
+<h2>Tier Requirements</h2>
+<table>
+    <tr>
+        <th>Tier</th>
+        <th>Requirment</th>
+        <th>Earning</th>
+    </tr>
+    <tr *ngFor="let tier of tiers">
+        <td>{{tier.tier}}</td>
+        <td>{{tier.req}}</td>
+        <td>{{tier.percentage}}</td>
+    </tr>
+</table>

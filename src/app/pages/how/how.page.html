@@ -1,0 +1,54 @@
+<div class="fluid-container">
+    <div class="row">
+        <div class="col-sm-12 how-header">
+            <h1>How It Works</h1>
+
+            <button class="menu-button d-inline d-sm-none" mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon svgIcon="menu"></mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu" yPosition="below">
+                <ng-container *ngFor="let page of pages">
+                    <button mat-menu-item *ngIf="!page.hidden" [routerLink]="page.url">
+                        <mat-icon [svgIcon]="page.icon"></mat-icon>
+                        <span>{{ page.label }}</span>
+                    </button>
+                    <ng-container *ngIf="page.children && page.children.length">
+                        <ng-container *ngFor="let cpage of page.children">
+                            <button mat-menu-item *ngIf="!cpage.hidden" [routerLink]="page.url + '/' + cpage.url">
+                                <mat-icon [svgIcon]="cpage.icon"></mat-icon>
+                                <span>{{ cpage.label }}</span>
+                            </button>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </mat-menu>
+        </div>
+    </div>
+    <div class="row md-content">
+        <div class="col-md-3 col-lg-2 d-none d-sm-flex sidebar">
+            <ng-container *ngFor="let page of pages">
+                <button class="btn btn-white" *ngIf="!page.hidden" [routerLink]="page.url">
+                    <mat-icon [svgIcon]="page.icon"></mat-icon>
+                    <span>{{ page.label }}</span>
+                </button>
+                <ng-container *ngIf="page.children && page.children.length">
+                    <div class="children">
+                        <ng-container *ngFor="let cpage of page.children">
+                            <button class="btn btn-white" *ngIf="!cpage.hidden" [routerLink]="page.url + '/' + cpage.url">
+                                <mat-icon [svgIcon]="cpage.icon"></mat-icon>
+                                <span>{{ cpage.label }}</span>
+                            </button>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="col-sm-12 col-md-9 col-lg-10 md-col">
+            <div class="md-container">
+                <markdown #postDiv *ngIf="activePage != null" [src]="'assets/howto/' + activePage.filePath + '.md'" katex emoji (load)="onMarkdownLoad($event)" (error)="onError($event)"></markdown>
+            </div>
+        </div>
+    </div>
+</div>
+

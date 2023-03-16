@@ -1,0 +1,131 @@
+<!-- Initial page load -->
+<div *ngIf="success==false" class="fluid-container">
+  <div class="row justify-content-md-center">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="mb-0">
+          Book a Zoom Webinar on DeFi at Alaio with Adil Abbas<a
+            href="https://uk.linkedin.com/in/contact-adil-abbas"
+            target="_blank"
+            ><img class="linkedin ml-3" src="../../../assets/LI-In-Bug.png"
+          /></a>
+        </h1>
+        <p class="mb-0">Webinars are held on Saturdays at 12pm BST.</p>
+        <p>
+          You will also receive complementary KPW equal to the amount that you
+          paid.
+        </p>
+
+        <select
+          class="form-control"
+          [(ngModel)]="option"
+          (change)="priceCalculation($event.target.value)"
+        >
+          <option [value]="0">10 minutes - $100</option>
+          <option [value]="1">30 minutes - $250</option>
+          <option [value]="2">1 hour - $500</option>
+          <option [value]="3">2 hours - $1000</option>
+        </select>
+        <p *ngIf="product?.price">
+          5% Stripe fee will be applicable at the time of Checkout. Total Amount
+          of ${{product?.price}} will be charged.
+        </p>
+
+        <label for="" class="mt-3">Enter your name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          [(ngModel)]="name"
+        />
+
+        <label for="" class="mt-3">Enter your email address</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Email"
+          [(ngModel)]="email"
+        />
+
+        <!-- <Form
+			  action="https://www.coinpayments.net/index.php"
+			  method="post"
+			  id="payCryptoForm"
+			> -->
+        <spinner *ngIf="loading"></spinner>
+        <button
+          class="btn btn-white mt-3"
+          (click)="onCheckout()"
+          *ngIf="!loading"
+        >
+          Card Checkout <span *ngIf="product?.price">${{product?.price}}</span>
+        </button>
+        &nbsp;&nbsp;&nbsp;
+        <spinner *ngIf="loading"></spinner>
+
+        <!-- This code will be used for Coinpayment redirection-->
+
+        <form
+          action="https://www.coinpayments.net/index.php"
+          method="post"
+          id="payCryptoForm"
+        >
+          <div>
+            <div>
+              <div>
+                <input type="hidden" name="cmd" value="_pay" />
+                <input type="hidden" name="reset" value="1" />
+                <input
+                  type="hidden"
+                  name="merchant"
+                  value="61a3b62f76f82bec111ef2ab02940b35"
+                />
+                <input
+                  type="hidden"
+                  name="item_name"
+                  [value]="'BUY KPW for Wallet: ' + auth?.user?.username"
+                />
+                <input type="hidden" name="item_number" [value]="objDateTime" />
+                <input type="hidden" name="invoice" [value]="objDateTime" />
+                <input type="hidden" name="currency" value="USD" />
+                <input type="hidden" name="amountf" [value]="product?.price" />
+                <input type="hidden" name="quantity" value="1" />
+                <input type="hidden" name="allow_quantity" value="0" />
+                <input type="hidden" name="want_shipping" value="0" />
+                <input type="hidden" name="first_name" [value]="name" />
+                <input type="hidden" name="last_name" />
+                <input type="hidden" name="email" [value]="email" />
+                <input type="hidden" name="allow_extra" value="0" />
+              </div>
+            </div>
+          </div>
+          <button
+            (click)="onCryptoCheckout()"
+            class="btn btn-white mt-3 btn-crypto"
+            *ngIf="!loading"
+          >
+            Crypto Checkout
+            <span *ngIf="product?.price">${{product?.price}}</span>
+          </button>
+        </form>
+
+        <!-- This code will be used for Coinpayment redirection-->
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-danger mt-3 error-class" role="alert" *ngIf="message">
+    {{message}}
+  </div>
+</div>
+
+<!-- Order success -->
+<!-- <div *ngIf="success==true" class="fluid-container">
+	  <div class="row  justify-content-md-center">
+		  <div class="card">
+			  <div class="card-body">
+				  <h1>Thank you very much for booking time with Adil Abbas</h1>    
+				  <p>Please attend the Zoom meeting on time. Payment is nonrefundable.</p>            
+			  </div>
+		  </div>
+	  </div>
+  </div> -->

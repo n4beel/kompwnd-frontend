@@ -1,0 +1,24 @@
+<div class="loginPoup validateWallet" [formGroup]="loginForm">
+    <div class="containerLoginPopup">
+      <div class="innerWrapperContainerLoginPopup">
+        <h2>Validate Wallet <span class="crossContainer" (click)="onClose()"></span></h2>
+        <div class="inputWrapper">
+          <label for="Password">Password</label>
+          <input type="password" placeholder="write password here" formControlName="password">
+          <ngx-form-error [control]="loginForm.get('password')"></ngx-form-error>
+        </div>
+        <button class="PrimaryButton" (click)="onSubmit()" >Validate</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="toastAlert" [ngClass]="{'active': alertMessage}">
+    <div class="alertToast">
+        <img src="../../../../assets/images/18.png">
+        <h5>
+            {{title}}
+            <span>{{alertMessage}}</span>
+        </h5>
+    </div>
+  </div>

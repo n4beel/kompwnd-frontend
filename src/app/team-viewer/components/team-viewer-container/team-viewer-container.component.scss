@@ -1,0 +1,159 @@
+.tableWrappers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0px 0px;
+  gap: 20px;
+}
+
+.width40 {
+  width: 40%;
+}
+
+.width60 {
+  width: 60%;
+}
+
+.tableWrappers {}
+
+.tableWrappers .tableContainers {
+  padding: 0px 20px;
+}
+
+.tableWrappers .tableContainer {
+  padding: 0px 20px;
+  background: #25282D;
+  border-radius: 8px;
+  padding: 0;
+}
+
+.teamViwerContainer {
+  max-width: 1165px;
+  padding: 0px 20px;
+  margin: 40px auto;
+}
+
+.containerInnerTeam h3 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FFFFFF;
+}
+
+.tablWrppaer ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.tablWrppaer li a {
+  background: rgba(37, 40, 45, 0.29);
+  border-radius: 0px 8px 0px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 165px;
+  min-height: 47px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+a {}
+
+.tablWrppaer li a.active {
+  background: #25282D;
+  color: #fff;
+  font-weight: 600;
+}
+
+.tabWrapper {
+  background: #25282D;
+  border-radius: 0px 8px 8px 8px;
+  padding: 18px 24px;
+}
+
+.formWrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.formWrapper label {
+  display: block;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+.formWrapper input, .formWrapper select {
+  background-color: #191B1F;
+  border-radius: 8px;
+  width: 100%;
+  border: none;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #FFFFFF;
+  height: 42px;
+  padding: 0px 15px;
+}
+
+.inputWrapper {
+  width: 26%;
+}
+
+.formWrapper button {
+  height: 41px;
+}
+
+.tableContainer h4 {
+  padding: 18px;
+  margin: 0;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+.tableWrappers thead, .tableWrappers th {
+  border-radius: 0;
+}
+
+.tableWrappers .tableContainer table {
+  border-radius: 0;
+}
+
+.tableWrappers .tableContainer table th, .tableWrappers .tableContainer table td {
+  padding: 11px 27px;
+}
+
+.tableFullWrapper .tableContainer {
+  background: #25282D;
+  border-radius: 8px;
+  margin: 20px 0px;
+}
+
+.tableFullWrapper .tableContainer table {
+  border-radius: 0;
+}
+
+.tableFullWrapper table th, .tableFullWrapper table td {
+  font-weight: 400;
+  line-height: 21px;
+  padding: 9px 40px;
+}

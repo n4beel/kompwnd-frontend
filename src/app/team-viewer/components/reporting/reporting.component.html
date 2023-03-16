@@ -1,0 +1,183 @@
+<div class="tabWrapper">
+  <div class="tabContainer1">
+    <form [formGroup]="reportSearchFilterForm">
+    <div class="formWrapper" >
+        <div class="inputWrapper">
+          <label for="Username">Username</label>
+          <input type="text" placeholder="User name" formControlName="username">
+          <ngx-form-error [control]="reportSearchFilterForm.get('username')"></ngx-form-error>
+        </div>
+        <div class="inputWrapper">
+          <label for="Range">Range</label>
+          <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [selectMode]="'range'"  [max]="currentDate" placeholder="Date Time"  formControlName="dateRange">
+          <owl-date-time #dt1 [pickerType]="'calendar'" ></owl-date-time>
+
+            <ngx-form-error [control]="reportSearchFilterForm.get('dateRange')"></ngx-form-error>
+        </div>
+        <div class="inputWrapper listItemInput">
+          <label for="Report Type">Report Type</label>
+          <span (click)="showDropDown = !showDropDown" #elementRef
+          ><span style="color:#fff" *ngIf="reportSearchFilterForm.controls['reportType']?.value">{{reportSearchFilterForm.controls['reportType']?.value |titlecase}}</span>
+          <span *ngIf="!reportSearchFilterForm.controls['reportType']?.value"> Select report type</span> <img src="../../../../assets/images/arrow2.png" alt=""></span>
+          <ul [ngClass]="{'active': showDropDown}">
+
+            <ng-container *ngFor="let item of reportTypeList" >
+              <li [ngClass]="{'active': item === reportSearchFilterForm.controls['reportType']?.value}" (click)="onReportTypeClick(item)">{{item}} </li>
+            </ng-container>
+          </ul>
+          <ngx-form-error [control]="reportSearchFilterForm.get('reportType')"></ngx-form-error>
+        </div>
+        <button class="PrimaryButton" appPreventDoubleClick (throttledClick)="GetReports()" [throttleTime]="700">Submit</button>
+      </div>
+      </form>
+  </div>
+  <div class="alertWrapperInput" [ngClass]="{'active': showError}">
+    <span class="closeAlert" (click)="showError=false"></span>
+    <h4>{{errorHeading}} <span>{{errorMessage}}</span></h4>
+  </div>
+</div>
+
+<div class="tableWrappers width100" *ngIf="reportingData && selectedReportType === 'earning'">
+  <div class="tableContainer" *ngIf="reportingData.withdrawals?.length > 0">
+    <h4>Wallet: {{reportSearchFilterForm.get('username')?.value}}</h4>
+    <table>
+      <thead>
+        <th>Date</th>
+        <th>Dividend</th>
+        <th>Match Bonus</th>
+        <th>Referral</th>
+        <th>Total</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of reportingData.withdrawals">
+          <td>{{item.created_at ? (item.created_at| date: 'shortDate'): '-'}}</td>
+          <td>{{item.dividend_KPW | number : '1.4-4'}}  KPW ≈ ${{item.dividend_USD | number : '1.2-2'}} </td>
+          <td>{{item.match_KPW | number : '1.4-4'}}  KPW ≈ ${{item.match_USD | number : '1.2-2'}} </td>
+          <td>{{item.referral_KPW | number : '1.4-4'}}  KPW ≈ ${{item.referral_USD | number : '1.2-2'}} </td>
+          <td>{{item.amount_KPW | number : '1.4-4'}}  KPW ≈ ${{item.amount_USD | number : '1.2-2'}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tableContainer" *ngIf="reportingData.team?.length > 0">
+    <h4>Team</h4>
+    <table>
+      <thead>
+        <th>Level</th>
+        <th>Dividend</th>
+        <th>Match Bonus</th>
+        <th>Referral</th>
+        <th>Total</th>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let teamMember of reportingData.team">
+          <td>{{teamMember?.level ? teamMember.level: '-' }}</td>
+          <td>{{teamMember?.dividend_KPW | number : '1.4-4'}}  KPW ≈ ${{teamMember?.dividend_USD | number : '1.2-2'}} </td>
+          <td>{{teamMember?.match_KPW | number : '1.4-4'}}  KPW ≈ ${{teamMember?.match_USD | number : '1.2-2'}} </td>
+          <td>{{teamMember?.referral_KPW | number : '1.4-4'}}  KPW ≈ ${{teamMember?.referral_USD | number : '1.2-2'}} </td>
+          <td>{{teamMember?.amount_KPW | number : '1.4-4'}}  KPW ≈ ${{teamMember?.amount_USD | number : '1.2-2'}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tableWrappers" *ngIf="reportingData && selectedReportType === 'deposit'">
+  <div class="tableContainer width40" *ngIf="reportingData.deposits?.length > 0">
+    <h4>Wallet: {{reportSearchFilterForm.get('username')?.value}}</h4>
+    <table  *ngIf="reportingData.deposits">
+      <thead>
+        <th>Date</th>
+        <th>Deposit</th>
+      </thead>
+      <tbody *ngFor="let item of reportingData.deposits">
+        <tr>
+          <td>{{item.created_at ? (item.created_at| date: 'shortDate'): '-'}}</td>
+          <td>{{item.amount_KPW | number : '1.4-4'}}  KPW ≈ ${{item.amount_USD | number : '1.2-2'}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tableContainer width60" *ngIf="reportingData.team?.length > 0">
+    <h4>Team</h4>
+    <table>
+      <thead>
+        <th>Levels</th>
+        <th>No of teams</th>
+        <th>Deposit</th>
+      </thead>
+      <tbody  *ngFor="let teamMember of reportingData.team">
+        <tr>
+          <td>{{teamMember?.level ? teamMember?.level: '-'}}</td>
+          <td>{{teamMember?.no_users}}</td>
+          <td>{{teamMember?.deposit_KPW | number : '1.4-4'}}  KPW ≈ ${{teamMember?.deposit_USD | number : '1.2-2'}} </td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tableWrappers" *ngIf="reportingData && selectedReportType === 'rank'">
+  <div class="containerRank">
+    <div class="innerRankContainer">
+      <div class="colummnRank">
+        <div class="leftrank">
+          <h5>Wallet: {{reportSearchFilterForm.get('username')?.value}}</h5>
+          <div class="currrentStatusSp">
+            <h4>Current status: {{reportingData.user.rank > 0 ? spList[reportingData.user.rank]: '-'}} <span>expire at {{reportingData.user.expires_at ? (reportingData.user.expires_at | date: 'shortDate'): '-'}}</span></h4>
+            <div class="containerslipper">
+              <ul>
+                <ng-container *ngFor="let item of spList.slice(4); let i = index">
+                  <li [ngClass]="reportingData.user.rank > 0 && i === (reportingData.user.rank - 4) ?  'active' : reportingData.user.rank > 0 && i < (reportingData.user.rank - 4) ? 'completed': ''">
+                    <span class="dot"></span>
+                    <p>15 generation earning</p>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
+          <div class="rankSp">
+            <h5>Rank <span>{{reportingData.user.rank > 0 ? spList[reportingData.user.rank]: '-'}}</span></h5>
+            <h5>Self deposit <span>{{reportingData.user.deposit | number : '1.4-4'}}  KPW ≈ ${{reportingData.user.deposit * usdConversionValue | number : '1.2-2'}} </span></h5>
+            <h5>Team deposit  <span>{{reportingData.user.teamDeposit | number : '1.4-4'}}  KPW ≈ ${{reportingData.user.teamDeposit * usdConversionValue | number : '1.2-2'}} </span></h5>
+          </div>
+        </div>
+        <div class="righntCOlumnRank">
+          <h5>Team</h5>
+          <div class="tableContainer">
+            <table>
+              <thead>
+                <th>Username</th>
+                <th>Level</th>
+                <th>Rank</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let teamMember of reportingData.team">
+                  <td>{{teamMember?.account_name}}</td>
+                  <td>{{teamMember?.level ? teamMember?.level: '-' }}</td>
+                  <td>{{teamMember?.rank > 0 ? spList[teamMember?.rank]: '-'}} </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!(reportingData?.team?.length > 0 || reportingData?.user || reportingData?.deposits?.length > 0 || reportingData?.withdrawals?.length > 0) && responseRecieved">
+  <p class="noDataFound">No Data Found</p>
+</div>
+<div *ngIf="showLoader">
+  <div class="mainLoader">
+    <div class="loader3">
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div>
+    <h1 [class.has-children]="!!subordinates?.length"
+    >
+      {{name}}
+    </h1>
+  
+    <div 
+      *ngIf="subordinates.length > 0"
+      class="children"
+    >
+      <ng-container *ngFor="let node of subordinates">
+        <app-team-node
+          [name]="node.name"
+          [subordinates]="node.subordinates"
+        >
+        </app-team-node>
+      </ng-container>
+    </div>
+  </div>

@@ -1,0 +1,137 @@
+<header class="dashboardHeader">
+    <div class="container">
+        <div class="innerWrapperHeader">
+          <div class="hamburger">
+            <span class="active"></span>
+          </div>
+            <div class="leftContainerHeader">
+                <img src="../../../../assets/images/2.svg" [routerLink]="['']">
+                <div class="wrapperSelectorNew">
+                  <div class="openerContainer" (click)="showProductDropdown=!showProductDropdown" #productRef>
+                    <img src="../../../../assets/images/header/grid.png" alt="">
+                    <span class="contentSelected">Products <img src="../../../../assets/images/header/tick.png" alt=""></span>
+                  </div>
+                  <!-- add class active to show this dropdown -->
+                  <div class="dropDownMenuProducts" [ngClass]="{'active': showProductDropdown}">
+                    <ul>
+                      <li>
+                        <span>
+                          <img src="../../../../assets/images/header/3.png" alt="">
+
+                        </span>
+                        <div class="contentHeaderPrudts">
+                          <h4>Earn</h4>
+                          <p>
+                            Smart crypto-based investment system powered by decentralized smart contracts
+                          </p>
+                        </div>
+                      </li>
+                      <li>
+                        <span>
+                          <img src="../../../../assets/images/header/2.png" alt="">
+                        </span>
+                        <div class="contentHeaderPrudts">
+                          <h4>Insurance</h4>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                          </p>
+                        </div>
+                      </li>
+                      <li>
+                        <span>
+                          <img src="../../../../assets/images/header/4.png" alt="">
+                        </span>
+                        <div class="contentHeaderPrudts">
+                          <h4>Swap</h4>
+                          <p>
+                            Quick Conversation, Cross chain swaping made easy
+                          </p>
+                        </div>
+                      </li>
+                      <li>
+                        <span>
+                          <img src="../../../../assets/images/header/1.png" alt="">
+
+                        </span>
+                        <div class="contentHeaderPrudts">
+                          <h4>Staking</h4>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                          </p>
+                        </div>
+                      </li>
+                      <li>
+                        <span>
+                          <img src="../../../../assets/images/header/5.png" alt="">
+                        </span>
+                        <div class="contentHeaderPrudts">
+                          <h4>Predict</h4>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                          </p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+            <div class="centeredheader">
+                <nav>
+                    <ul>
+                        <li [ngClass]="{'active': router.url === '/dashboard'}" [routerLink]="['/dashboard']"><a href="javascript:void(0);">Dashboard</a></li>
+                        <li [ngClass]="{'active': router.url.includes('set-buddy') && !router.url.includes('detail') }" [routerLink]="['set-buddy']"><a href="javascript:void(0);">Set Buddy</a></li>
+                        <li [ngClass]="{'active': router.url === '/dashboard/deposit'}" [routerLink]="['deposit']"><a href="javascript:void(0);">Deposit</a></li>
+                        <li [ngClass]="{'active': router.url === '/dashboard/withdraw'}" [routerLink]="['withdraw']"><a href="javascript:void(0);">Withdraw</a></li>
+                        <li [ngClass]="{'active': router.url === '/dashboard/roll'}" [routerLink]="['roll']"><a href="javascript:void(0);">Roll</a></li>
+                        <li [ngClass]="{'active': router.url === '/dashboard/team-viewer'}" [routerLink]="['team-viewer']"><a href="javascript:void(0);">Team Viewer</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="rightdashboardHeader">
+                <ul>
+                    <li #notificationRef (click)="onNotificationIconClick()">
+                        <a href="javascript:void(0);" class="bellIcon" [ngClass]="{'active': newNotification}">
+                          <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.7322 9.97705C12.2677 9.40358 12.0103 8.68001 12.0103 7.94246V6.21014C12.0103 4.59697 11.4524 3.31199 10.3541 2.39318C9.70807 1.85262 8.95341 1.51059 8.17093 1.36554V1.05989C8.17093 0.82846 8.08117 0.612565 7.91877 0.450153C7.75637 0.287754 7.5388 0.197998 7.30903 0.197998C6.83413 0.197998 6.44716 0.584845 6.44716 1.05987V1.36551C5.6648 1.51057 4.91171 1.8526 4.26404 2.39316C3.16555 3.31372 2.60775 4.59701 2.60775 6.21012V7.94243C2.60775 8.68168 2.3521 9.40356 1.88587 9.97703L0.740748 11.3882C0.604249 11.5574 0.576661 11.7854 0.669908 11.9805C0.763154 12.1774 0.956639 12.3 1.17423 12.3H5.01371C5.14502 13.4485 6.12425 14.345 7.30731 14.345C8.49206 14.345 9.46971 13.4487 9.60091 12.3H13.4404C13.658 12.3 13.8514 12.1774 13.9447 11.9805C14.038 11.7837 14.0121 11.5574 13.8739 11.3882L12.7322 9.97705ZM6.97563 1.05796C6.97563 0.873146 7.12586 0.724588 7.30899 0.724588C7.39875 0.724588 7.48176 0.759165 7.54561 0.823016C7.60777 0.885181 7.64235 0.969875 7.64235 1.05963V1.29793C7.41959 1.28239 7.19672 1.28239 6.97395 1.29793V1.05795L6.97563 1.05796ZM7.30899 13.8181C6.41604 13.8181 5.6751 13.1583 5.54729 12.3016H9.07064C8.94294 13.1582 8.20201 13.8181 7.30906 13.8181H7.30899ZM13.4715 11.7541C13.4628 11.7713 13.4491 11.7713 13.4439 11.7713L1.17599 11.7714C1.16913 11.7714 1.15696 11.7714 1.1484 11.7542C1.13973 11.737 1.1484 11.7266 1.1519 11.7214L2.29702 10.3103C2.83758 9.64191 3.13637 8.80255 3.13637 7.94238L3.13625 6.21006C3.13625 4.761 3.63021 3.61249 4.60438 2.79713C5.22266 2.27896 5.95321 1.96632 6.70463 1.85754H6.7115C6.7374 1.85754 6.7633 1.85236 6.78752 1.84549C6.96028 1.82308 7.13473 1.81272 7.30905 1.81272C7.4835 1.81272 7.65793 1.82308 7.83058 1.84549C7.8548 1.85236 7.8807 1.85754 7.9066 1.85754H7.91347C8.66644 1.96633 9.39532 2.27896 10.0137 2.79713C10.9879 3.6124 11.4818 4.76088 11.4818 6.21006V7.94238C11.4818 8.80246 11.7806 9.64191 12.3212 10.3103L13.4663 11.7231C13.4715 11.7265 13.4784 11.7369 13.4715 11.7541L13.4715 11.7541Z" fill="white"/>
+                            </svg>
+
+                        </a>
+                        <div class="notificationSubMenu"  [ngClass]="{'active': showNotification}">
+                            <h5>Notifications</h5>
+                            <div class="containerNotificationMessage">
+                              <ng-container *ngIf="notificationList.length > 0 else empty">
+                                  <div *ngFor="let notification of notificationList">
+                                      <p>{{notification?.body}}</p>
+                                  </div>
+                              </ng-container>
+                            </div>
+                            <a href="javascript:void(0);" *ngIf="notificationList.length < totalNotfications" (click)="onReadMoreClick()">Read More</a>
+                            <ng-template #empty><p>No notification found</p> </ng-template>
+                        </div>
+                    </li>
+                    <li class="primaryButton" (click)="showDropdown = !showDropdown" #elementRef>
+                        <a href="javascript:void(0);" class="PrimaryButton">
+                            {{globals.userName}} <span class="carotHeader"></span>
+                        </a>
+                        <ul class="subMenuContainer"  [ngClass]="{'active': showDropdown}">
+                            <li><a href="javascript:void(0);">How it works</a></li>
+                            <li><a href="javascript:void(0);">Explorer</a></li>
+                            <li><a href="javascript:void(0);">Telegram</a></li>
+                            <li><a href="javascript:void(0);" class="PrimaryButton" (click)="onDisconnectWalletClick()">Disconnect Wallet</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </header>
+
+  <div class="toastAlert" [ngClass]="{'active': alertMessage}">
+      <div class="alertToast">
+          <img src="../../../../assets/images/18.png">
+          <h5>
+              {{title}}
+              <span>{{alertMessage}}</span>
+          </h5>
+      </div>
+    </div>

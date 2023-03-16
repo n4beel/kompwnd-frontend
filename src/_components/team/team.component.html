@@ -1,0 +1,69 @@
+<div class="user-line">
+    <button class="toggle" *ngIf="team.buddies.length || deposit" (click)="open = !open">
+        <span *ngIf="open">&#9660;</span>
+        <span *ngIf="!open">&#9658;</span>
+    </button>
+    <h3 [ngClass]="{'add-pad': !team.buddies.length && !deposit}">{{ team.user }}{{(deposit ? ':' : '')}} {{ (team.buddies.length || deposit ? open ? ' &#123;' : ' &#123; ... &#125;' : '') }}</h3>
+</div>
+<div class="team-wrapper" *ngIf="team.buddies.length && open && !deposit">
+        <div class="team">
+            <team-viewer *ngFor="let team of team.buddies" [team]="team"></team-viewer>
+        </div>
+    <span>&#125;</span> 
+</div>
+<div class="team-wrapper" *ngIf="open && deposit">
+    <div class="team">
+
+        <div class="user-line">
+            <button class="toggle" *ngIf="team.deposit" (click)="dOpen = !dOpen">
+                <span *ngIf="dOpen">&#9660;</span>
+                <span *ngIf="!dOpen">&#9658;</span>
+            </button>
+            <h3 [ngClass]="{'add-pad': !team.deposit}">deposit: {{ (team.deposit ? dOpen ? ' &#123;' : ' &#123; ... &#125;,' : 'null') }}</h3>
+        </div>
+
+        <div class="team-wrapper" *ngIf="team.deposit && dOpen">
+            <div class="team"> 
+                <div class="user-line">
+                    <h3>deposit: {{ (team.deposit.deposit.value.toFixed(team.deposit.deposit.precision)) + ' ' + team.deposit.deposit.symbol}},</h3>
+                </div>
+                <div class="user-line">
+                    <h3>dividends_payed: {{ (team.deposit.divspayed.value.toFixed(team.deposit.divspayed.precision)) + ' ' + team.deposit.divspayed.symbol}},</h3>
+                </div>
+                <div class="user-line">
+                    <h3>max_dividends: {{ (team.deposit.maxdiv.value.toFixed(team.deposit.maxdiv.precision)) + ' ' + team.deposit.maxdiv.symbol}},</h3>
+                </div>
+                <div class="user-line">
+                    <h3>rewards: {{ (team.deposit.rewards.value.toFixed(team.deposit.rewards.precision)) + ' ' + team.deposit.rewards.symbol}},</h3>
+                </div>
+                <div class="user-line">
+                    <h3>match: {{ (team.deposit.match.value.toFixed(team.deposit.match.precision)) + ' ' + team.deposit.match.symbol}},</h3>
+                </div>
+                <div class="user-line">
+                    <h3>initial_date: {{ (team.deposit.initial_date * 1000) | date:'medium' }},</h3>
+                </div>
+                <div class="user-line">
+                    <h3>last_action: {{ (team.deposit.last_action * 1000) | date:'medium' }}</h3>
+                </div>
+            </div>
+            <span>&#125;,</span> 
+        </div>
+    
+        <div class="user-line">
+            <button class="toggle" *ngIf="team.buddies.length" (click)="tOpen = !tOpen">
+                <span *ngIf="tOpen">&#9660;</span>
+                <span *ngIf="!tOpen">&#9658;</span>
+            </button>
+            <h3 [ngClass]="{'add-pad': !team.buddies.length}">buddies: {{ (team.buddies.length ? tOpen ? ' &#123;' : ' &#123; ... &#125;' : 'null') }}</h3>
+        </div>
+    
+        <div class="team-wrapper" *ngIf="team.buddies.length && tOpen">
+            <div class="team">
+                <team-viewer *ngFor="let team of team.buddies" [team]="team" [deposit]="deposit"></team-viewer>
+            </div>
+            <span>&#125;</span> 
+        </div>
+    </div>
+
+    <span>&#125;</span> 
+</div>

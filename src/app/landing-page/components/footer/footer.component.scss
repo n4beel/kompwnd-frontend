@@ -1,0 +1,139 @@
+
+footer {
+	height: 408px;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	color: #343434;
+}
+
+.logoContainerFooter img {
+	filter: invert(1);
+	width: 133px;
+	height: 78.59px;
+	margin-bottom: 21px;
+}
+
+.logoContainerFooter p {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 27px;
+	color: #191B1F;
+	margin-bottom: 44px;
+}
+
+.logoContainerFooter a {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 21px;
+	color: #343434;
+	display: block;
+	margin-bottom: 28px;
+}
+
+.logoContainerFooter span {
+	display: block;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 21px;
+	color: #343434;
+}
+
+.listItems ul {
+	padding: 0;
+	list-style: none;
+	/* display: none; */
+}
+
+.listItems h3 {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 27px;
+	color: #191B1F;
+	margin-bottom: 10px;
+}
+
+.listItems a {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 21px;
+	color: #343434;
+	line-height: normal;
+	margin-bottom: 10px;
+	display: block;
+}
+
+ul.socialMediaIcons {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 110px;
+}
+
+ul.socialMediaIcons li {
+	flex: 0 33%;
+}
+
+ul.socialMediaIcons a {
+	background: #5F505F;
+	border-radius: 50%;
+	width: 25px;
+	height: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	border: 2px solid #5F505F;
+	transition: 0.7s all;
+  text-decoration: none;
+}
+
+ul.socialMediaIcons a:hover {
+	background: none;
+	color: #5F505F;
+}
+
+.contentWrapperPlatform .row:nth-child(even) img {
+	margin-left: auto;
+}
+
+
+@media only screen and (max-width:1100px) {
+
+
+	.listItems h3 {
+		font-size: 16px;
+		position: relative;
+	}
+
+	.listItems a,
+	.logoContainerFooter a {
+		font-size: 12px;
+		line-height: normal;
+		margin-bottom: 7px;
+	}
+
+	.logoContainerFooter p {
+		font-size: 13px;
+	}
+
+	.logoContainerFooter span {
+		font-size: 11px;
+		line-height: normal;
+	}
+}
+@media only screen and (max-width:767px) {
+	footer {
+		height: auto;
+		padding: 20px 0px;
+	}
+}

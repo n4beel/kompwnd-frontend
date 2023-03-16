@@ -1,0 +1,8 @@
+<h1>Version 2.4 is now Live:</h1>
+<ul>
+    <li>Optimizes your transaction speeds.</li>
+    <li>Updates your deposits.</li>
+</ul>
+<div class="alert mt-3" [ngClass]="{'alert-danger': messageType == 'error', 'alert-success': messageType == 'success'}" role="alert" *ngIf="message" [innerHtml]="message"></div>
+<spinner *ngIf="loading"></spinner>
+<button (click)="migrate()" *ngIf="!loading">OK</button>

@@ -1,0 +1,49 @@
+<div class="containerSetBuddy">
+  <div class="container">
+    <h3>
+      Set Buddy
+      <a href="javascript:void(0);" (click)="onCopy()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 13C9.42945 13.5741 9.97736 14.0492 10.6066 14.3929C11.2357 14.7367 11.9315 14.9411 12.6467 14.9923C13.3618 15.0435 14.0796 14.9404 14.7513 14.6898C15.4231 14.4392 16.0331 14.0471 16.54 13.54L19.54 10.54C20.4508 9.59699 20.9548 8.33397 20.9434 7.02299C20.932 5.71201 20.4061 4.45794 19.4791 3.5309C18.5521 2.60386 17.298 2.07802 15.987 2.06663C14.676 2.05523 13.413 2.55921 12.47 3.47L10.75 5.18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.0002 11C12.5707 10.4259 12.0228 9.95083 11.3936 9.60707C10.7645 9.26331 10.0687 9.05889 9.35355 9.00768C8.63841 8.95646 7.92061 9.05964 7.24885 9.31023C6.5771 9.56082 5.96709 9.95294 5.4602 10.46L2.4602 13.46C1.54941 14.403 1.04544 15.666 1.05683 16.977C1.06822 18.288 1.59407 19.5421 2.52111 20.4691C3.44815 21.3961 4.70221 21.922 6.01319 21.9334C7.32418 21.9448 8.58719 21.4408 9.5302 20.53L11.2402 18.82" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+
+        Generate referral link</a>
+    </h3>
+    <div class="containerBoxSetBuddy">
+      <div class="inputWrapper">
+        <label for="Username">Username</label>
+        <input type="text" placeholder="Type user name of your upline" [readonly]="buddy && disableField"  [(ngModel)]="buddy">
+        <!-- toggle active class to show -->
+        <div class="alertWrapperInput" [ngClass]="{'active': buddyNotFound}">
+          <span class="closeAlert" (click)="buddyNotFound=false"></span>
+          <h4>User does not exist <span>If you cant find a buddy you can use kompwnd as your buddy to support the network</span></h4>
+        </div>
+        <div class="alertWrapperInput" [ngClass]="{'active': buddyInvalid}">
+          <span class="closeAlert" (click)="buddyInvalid=false"></span>
+          <span>Invalid username for buddy</span>
+        </div>
+        <button class="PrimaryButton" (click)="openDialog()" [disabled]="buddy && disableField"  [ngClass]="{'disabled': buddy && disableField}" >Team Up</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- toggle active class to show -->
+  <div [ngClass]="{'active': message }"class="popupWrapper ">
+    <div class="popup">
+      <img src="../../../../assets/images/tick.png" alt="">
+      <p>{{message}}</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="toastAlert" [ngClass]="{'active': alertMessage}">
+  <div class="alertToast">
+      <img src="../../../../assets/images/18.png">
+      <h5>
+          Alert
+          <span>{{alertMessage}}</span>
+      </h5>
+  </div>
+</div>

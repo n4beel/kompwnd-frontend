@@ -1,0 +1,81 @@
+.containerSetBuddy {
+  max-width: 611px;
+  margin: 30px auto;
+  position: relative;
+}
+
+.containerSetBuddy h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: #FFFFFF;
+}
+
+.containerSetBuddy a {
+  display: flex;
+  align-items: center;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 26px;
+  color: #FFFFFF;
+  gap: 10px;
+}
+
+.containerBoxSetBuddy {
+  width: 100%;
+  min-height: 210px;
+  background: #25282D;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.containerBoxSetBuddy label {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+.containerBoxSetBuddy input {
+  background: #191B1F;
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  border: 2px solid transparent;
+  height: 52px;
+  padding: 0px 18px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+.containerBoxSetBuddy input::placeholder {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.containerBoxSetBuddy button {
+  border: none;
+  width: 100%;
+  margin: 24px 0px 0px;
+}
+
+.containerBoxSetBuddy button:hover {
+  text-decoration: underline;
+}

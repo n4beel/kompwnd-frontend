@@ -1,0 +1,38 @@
+<div *ngIf="success==false" class="fluid-container">
+  <div class="row justify-content-md-center">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="mb-0">Welcome to the home of Defi learning.</h1>
+        <br />
+        <h3>
+          <p class="mb-0">
+            Please check my credentials on the subject here
+            <a
+              href="https://uk.linkedin.com/in/contact-adil-abbas"
+              target="_blank"
+              ><img class="linkedin ml-3" src="../../../assets/LI-In-Bug.png"
+            /></a>
+          </p>
+        </h3>
+
+        <p>
+          I run every Saturday session on <strong>Blockchain</strong>,
+          <strong>Decentralised Finance</strong>,
+          <strong>Tokenomics</strong> and <strong>Ecosystem</strong>. <br />
+          Please book your session and attend on time as it is non-refundable.
+        </p>
+        <div class="container">
+          <div class="vertical-center">
+            <button
+              class="btn btn-white mt-3"
+              (click)="onClick()"
+              *ngIf="!loading"
+            >
+              Book a Webinar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

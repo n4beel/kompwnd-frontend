@@ -1,0 +1,368 @@
+
+
+.inputWrapper label {
+	display: block;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
+	margin-bottom: 11px;
+}
+
+.inputWrapper input {
+	background: #191B1F;
+	border-radius: 8px;
+	display: block;
+	width: 100%;
+	height: 52px;
+	border: none;
+	padding: 0px 120px 0px 50px;
+	outline: none !important;
+	color: #fff;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
+	-webkit-appearence: none;
+}
+
+.inputWrapper {
+	position: relative;
+}
+
+span.rightPlaceholder {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	text-align: right;
+	color: rgba(255, 255, 255, 0.69);
+	position: absolute;
+	bottom: 14px;
+	right: 20px;
+}
+
+span.dollarPlaceholder {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	text-align: right;
+	color: rgba(255, 255, 255, 0.69);
+	position: absolute;
+	left: 20px;
+	bottom: 14px;
+}
+
+.currencyMethod {
+	margin: 29px 0px 0px;
+}
+
+.currencyMethod h4 {
+	margin-bottom: 11px;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
+}
+
+.radioSelector input {
+	display: none;
+}
+
+.radioInputflag {
+	width: 183px;
+	height: 43px;
+	background: #191B1F;
+	border-radius: 8px;
+	border: 2px solid #191B1F;
+	transition: 0.7s all;
+	cursor: pointer;
+}
+
+.radioSelector {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 13px;
+}
+
+.radioInputflag label {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 18px;
+	color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	padding: 12px 13px;
+}
+
+.radioInputflag img {
+	margin-right: 8px;
+}
+
+.radioInputflag:hover {
+	background: none;
+}
+
+.currencyMethod .PrimaryButton {
+	margin-top: 27px;
+	width: 100%;
+	border: none;
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
+}
+.currencyMethod .PrimaryButton:hover {
+	text-decoration: underline;
+}
+.mainSmallContainer {
+	max-width: max-content;
+	margin: 38px auto 0px;
+}
+
+.mainSmallContainer h3 {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 30px;
+	color: #FFFFFF;
+	margin-bottom: 12px;
+}
+/* dashboard 1 */
+.containerLargerBox .row {
+	margin: 0;
+	width: 100%;
+	gap: 13px;
+	justify-content: space-between;
+}
+
+.mainlargeContainer {max-width: 1150px;margin: 38px auto;}
+
+.mainlargeContainer h3 {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 30px;
+	color: #FFFFFF;
+	margin-bottom: 14px;
+}
+
+.largeBox {
+	min-height: 213px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	text-align: left;
+	align-items: flex-start;
+	max-width: 558px;
+	width: 100%;
+	background: red;
+	padding: 34px;
+	background: url('../../../../assets/images/16.png');
+	border-radius: 8px;
+	background-size: cover;
+}
+
+.largeBox h4 {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+	color: #FFFFFF;
+}
+
+.largeBox h2 {
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 55px;
+  color: #FFFFFF;
+  max-width: 558px;
+  width: 100%;
+  overflow: hidden;
+  // text-overflow: ellipsis;
+  // display: -webkit-box;
+  // -webkit-line-clamp: 1;
+  // line-clamp: 1;
+  // word-break: break-all;
+  // -webkit-box-orient: vertical;
+}
+
+.largeBox p {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+	color: #FFFFFF;
+	margin: 0;
+}
+
+.smallBoxesrRight {
+	max-width: calc(100% - 578px);
+  width: 100%;
+}
+
+.boxWrapperSmallRight {
+	margin-bottom: 13px;
+	min-width: 485px;
+	min-height: 100px;
+	background: #25282D;
+	border-radius: 8px;
+	padding: 23px 11px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-right: 55px;
+	padding-bottom: 17px;
+}
+
+.containerLargerBox {
+	/* margin: 0px -20px; */
+}
+
+.boxWrapperSmallRight:last-child {
+	margin-bottom: 0;
+}
+
+.boxWrapperSmallRight span {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
+	display: block;
+	margin-bottom: 3px;
+}
+
+.boxWrapperSmallRight h5 {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 27px;
+	color: #FFFFFF;
+	margin: 0;
+  overflow: hidden;
+  // text-overflow: ellipsis;
+  // display: -webkit-box;
+  // -webkit-line-clamp: 2; /* number of lines to show */
+  //         line-clamp: 2;
+  // -webkit-box-orient: vertical;
+}
+
+.wrapperContentLeft {
+	display: flex;
+	align-items: center;
+}
+
+.wrapperContentLeft img {
+	background: #191B1F;
+	border-radius: 8px;
+	padding: 8px;
+	margin-right: 22px;
+}
+.columnThreeLayout {
+	max-width: 361px;
+	width: 100%;
+}
+
+.threeColumnLayout {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 13px;
+	width: 100%;
+	margin: 16px 0px;
+  justify-content: space-between;
+}
+
+.columnThreeLayout .boxWrapperSmallRight {
+	max-width: 100%;
+	min-width: 100%;
+	padding-bottom: 21px;
+}
+.large2Column {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	width: 100%;
+}
+
+.leftLargeColumn img {
+	width: 100%;
+	max-width: 100%;
+	display: block;
+	margin: auto;
+}
+.leftLargeColumn {
+	max-width: 736px;
+  width: 100%;
+	min-height: 373px;
+	background: #25282D;
+	border-radius: 8px;
+	padding: 21px 20px;
+	max-height: 373px;
+}
+
+.rightCOlumnLargeLayout .boxWrapperSmallRight {
+	height: 118px;
+	min-width: 100%;
+	padding-top: 28px;
+	padding-bottom: 31px;
+	margin-bottom: 9px;
+	width: 100%;
+	max-width: 100%;
+}
+
+.rightCOlumnLargeLayout {
+	width: 100%;
+  max-width: 361px;
+  margin-left: auto;
+}
+@media only screen and (max-width: 1200px) {
+	.mainlargeContainer .container {
+		max-width: 100%;
+	}
+}
+
+.selectWrapper select{
+  background-color: #343434;
+  color: #fff;
+}
+
+.selectWrapper select option{
+  background-color: #343434;
+  color: #fff;
+}
+.wrapperContentLeft svg {
+  margin-right: 20px;
+}
+
+span.smallcontent {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px !important;
+  line-height: 18px !important;
+  color: rgba(255, 255, 255, 0.83) !important;
+}

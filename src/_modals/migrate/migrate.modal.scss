@@ -1,0 +1,13 @@
+:host {
+    min-width: 200px;
+    display: block;
+    color: white;
+
+    button {
+        border: unset;
+        background-color: white;
+        margin-right: 15px;
+        border-radius: 15px;
+        padding: 5px 10px;
+    }
+}

@@ -1,0 +1,49 @@
+:host {
+    display: flex;
+    margin: 0px;
+    flex-direction: column;
+
+    h4 {
+        margin: 5px 15px;
+        font-size: 1.2rem;
+        justify-content: end;
+        text-align: right;
+
+    }
+
+    .bar-container {
+        display: flex;
+
+        .speed-bar {
+            flex: 1 0 0px;
+            display: block;
+            position: relative;
+            height: 50px;
+            width: 100%;
+            border: 2px solid white;
+            margin: 0px 15px 30px 15px;
+
+
+            .bar {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                background-color: white;
+            }
+
+            .speed {
+                position: absolute;
+                top: calc(100% + 6px);
+
+                &.lower-speed {
+                    left: 0px;
+                }
+
+                &.upper-speed {
+                    right: 0px;
+                }
+            }
+        }   
+    }
+}

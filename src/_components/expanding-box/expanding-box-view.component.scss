@@ -1,0 +1,35 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    position: relative;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: top .2s, transform .2s;
+    transition-timing-function: ease-out;
+
+    &.expanded {
+        transition: top .1s, transform .1s;
+        transition-timing-function: ease-in;
+        top: 0%;
+        transform: translateY(0%);
+    }
+}
+
+h2, h3 {
+    margin: 0;
+    text-align: center;
+}
+
+p {
+    color: white;
+}
+
+mat-icon {
+    font-size: 120;
+    transform: scale(2);
+    margin: 10px 0px;
+}

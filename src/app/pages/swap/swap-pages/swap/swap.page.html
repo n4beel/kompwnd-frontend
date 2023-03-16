@@ -1,0 +1,49 @@
+<div class="fluid-container">
+    <div class="row  justify-content-md-center">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Swap</h1>
+                    <div class="space-between"><b>Amount</b> <p>{{(fromToken ? fromToken.value.toFixed(fromToken.precision) + ' ' + fromToken.symbol : '0.0000')}}</p></div>
+                    
+                    <div class="input-like">
+                        <input type="number" placeholder="0.0000" [(ngModel)]="fromValue" (input)="onCalcEstimate()">
+                        <select [(ngModel)]="fromSymbol" (change)="onCheckSymbol('from')">
+                            <option *ngFor="let swap of swapTokens" [value]="swap.tok_symbol.split(',').pop()">{{ swap.tok_symbol.split(",").pop() }}</option>
+                        </select>
+                    </div>
+
+                    <div class="btn btn-white mt-3 mb-3" (click)="swapFromTo()">Reverse</div>
+
+                    <div class="input-like">
+                        <input type="number" placeholder="0.0000" [(ngModel)]="toValue" (input)="onCalcEstimate(true)">
+                        <select [(ngModel)]="toSymbol" (change)="onCheckSymbol('to')">
+                            <option *ngFor="let swap of swapTokens" [value]="swap.tok_symbol.split(',').pop()">{{ swap.tok_symbol.split(",").pop() }}</option>
+                        </select>
+                    </div>
+
+                    <div class="card fees mt-3" *ngIf="swapFees.length">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Swap Fees
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <p *ngFor="let fee of swapFees">{{ fee }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="space-between mt-3">Estimate <p>{{kpwEstimate?.value}} <b>KPW</b></p> </div> -->
+                    <button class="btn btn-white mt-3" (click)="onSwap(fromToken.symbol)">Swap</button>
+
+                    <div class="alert alert-danger mt-3" role="alert" *ngIf="messageBuy">
+                        {{messageBuy}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

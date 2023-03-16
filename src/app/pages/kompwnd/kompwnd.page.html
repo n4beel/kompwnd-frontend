@@ -1,0 +1,215 @@
+<div class="fluid-container scrollbar">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Kompwnd</h1>
+        </div>
+    </div>
+    <div class="row full-row">
+        <!-- <div class="col-sm-6 order-sm-2">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Deposit</h2>
+                    <div class="space-between"><b>Amount</b> <p><b>Available:</b> {{(kpwAvailable ? kpwAvailable.value + ' ' + kpwAvailable?.symbol : '...') }}</p></div>
+                    
+                    <div class="input-like">
+                        <input type="number" placeholder="0.00"  [(ngModel)]="toDeposit" (input)="onConvert($event)">
+                        <span>USDT</span>
+                    </div>
+                    <div>KPW Cost: {{ kpwDeposit ? kpwDeposit : '0.0000' }} KPW</div>
+                    <label for="" class="mt-3">Buddy</label>
+                    <div class="form-group">
+                        
+                        <input type="text" class="form-control" [placeholder]="buddy ? buddy : 'Set Buddy'" [disabled]="buddy != null || !loaded" [(ngModel)]="setBuddy">
+                        
+                        <button class="btn btn-white" *ngIf="buddy == null && loaded"  (click)="onSetBuddy()">Set Buddy</button>
+                    </div>
+                    <button class="btn btn-white mt-3" (click)="onDeposit()" [disabled]="depositDisable">Deposit</button>
+                </div>
+            </div>
+            <div class="flex-buttons mt-3">
+                <button class="btn btn-white" (click)="onClaim()" [disabled]="claimDisable">
+                    Claim
+                </button>
+                <button class="btn btn-white" (click)="onRoll()" [disabled]="rollDisable">
+                    Roll
+                </button>
+            </div>
+            <div class="alert mt-3" [ngClass]="{'alert-danger': messageType == 'error', 'alert-success': messageType == 'success'}" role="alert" *ngIf="message">
+                {{message}}
+            </div>
+        </div> -->
+
+        <div class="col-md-4 order-sm-2">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Deposit</h2>
+                    <!-- <span class="deposit-message" *ngIf="throttleActive">
+                        Deposit Incentive Active +{{ depositBuff }}% 
+                    </span> -->
+                    <div class="space-between"><b>Amount</b> <p><b>Available:</b> {{(kpwAvailable ? kpwAvailable.value + ' ' + kpwAvailable?.symbol : '...') }}</p></div>
+                    <div class="input-like">
+                        <input type="number" placeholder="0.0000"  [(ngModel)]="tokpwDeposit" (input)="onConvert($event)">
+                        <span>KPW</span>
+                    </div>
+                    <div>Amount in USD: $ {{ usdDeposit ?  usdDeposit.toFixed(2) : '0.00' }}</div>
+                    <!-- <div *ngIf="trueDeposit && throttleActive">Estimate Deposit Value: {{ trueDeposit }}</div> -->
+                    <label for="" class="mt-3">Buddy</label>
+                    <div class="form-group">
+                        
+                        <input type="text" class="form-control" [placeholder]="buddy ? buddy : 'Set Buddy'"[readonly]="refBuddy || buddy != null || !loaded" [(ngModel)]="setBuddy">
+                        
+                        <button class="btn btn-white" *ngIf="buddy == null && loaded"  (click)="onSetBuddy()">Set Buddy</button>
+                    </div>
+                    <!-- <label for="" class="mt-3">Share</label>
+                    <div class="form-group">
+                        
+                        <input type="number" class="form-control" placeholder="Quantity to share" [readonly]="!loaded" [(ngModel)]="shareQuantity">
+                        <input type="range" min="0" [max]="maxShare" step="0.01" [(ngModel)]="shareQuantity">
+                    </div>
+                    <div class="form-group">
+                        
+                        <input type="text" class="form-control" placeholder="Share Dividends" [readonly]="!loaded" [(ngModel)]="shareFriend">
+                        
+                        <button class="btn btn-white" *ngIf="loaded"  (click)="onShareFriend()">Share</button>
+                    </div> -->
+                    <button class="btn btn-white mt-3" (click)="onDeposit()" [disabled]="depositDisable">Deposit</button>
+                </div>
+            </div>
+            <!-- <div class="info-container mt-3">
+                <button class="btn btn-round" routerLink="/how/claimroll" aria-label="Info">
+                    <mat-icon svgIcon="info"></mat-icon>
+                </button>
+                <div class="alert alert-danger" role="alert" *ngIf="throttleActive">
+                    Claim Dynamic Fee Active -{{dynamicFee}}% on Claims
+                </div>
+            </div> -->
+            <div class="flex-buttons mt-3">
+                <button class="btn btn-white" (click)="onClaim()" [disabled]="claimDisable">
+                    Claim
+                </button>
+                <button class="btn btn-white" (click)="onRoll()" [disabled]="rollDisable">
+                    Roll
+                </button>
+            </div>
+            <div class="alert mt-3" [ngClass]="{'alert-danger': messageType == 'error', 'alert-success': messageType == 'success'}" role="alert" *ngIf="message" [innerHtml]="message"></div>
+        </div>
+
+        <div class="col-md-8 order-sm-1">
+            <div class="komp-items">
+                <expanding-box>
+                    <expanding-box-view>
+                        <mat-icon svgIcon="kpw_coins"></mat-icon>
+                        <h3>Dividends</h3>
+                        <h2>{{ divs ? divs.value.toFixed(4) : '...' }} / {{ dailyEarning ? dailyEarning : '...' }}</h2>
+                        <p>{{ convertedDivs ? convertedDivs.substring(0, convertedDivs.length-3) : '...' }} / {{ convertedDailyEarning ? convertedDailyEarning : '...' }}</p>
+                    </expanding-box-view>
+                    <expanding-box-content>
+                        <report-table [data]="chartsData?.Available"></report-table>
+                    </expanding-box-content>
+                </expanding-box>
+                
+                <expanding-box>
+                    <expanding-box-view>
+                        <div class="badge" (click)="openTiers($event)">
+                            {{tier ? tier : '?'}}
+                        </div>
+                        <mat-icon svgIcon="kpw_bank"></mat-icon>
+                        <h3>Deposits</h3>
+                        <h2>{{ (deposit ? deposit.value.toFixed(4) + ' ' + deposit.symbol : '...') }}</h2>
+                        <!-- <p>{{ (convertedDeposits ? convertedDeposits : '...') }}</p> -->
+                    </expanding-box-view>
+                    <expanding-box-content>
+                        <report-table [data]="chartsData?.Deposits"></report-table>
+                    </expanding-box-content>
+                </expanding-box>
+                
+                <expanding-box>
+                    <expanding-box-view>
+                        <mat-icon svgIcon="kpw_wallet"></mat-icon>
+                        <h3>Claimed</h3>
+                        <h2>{{ (divsPayed ? divsPayed.value.toFixed(4) + ' ' + divsPayed.symbol : '...') }}</h2>
+                        <!-- <p>{{ (convertedDivsPayed ? convertedDivsPayed : '...') }}</p> -->
+                    </expanding-box-view>
+                    <expanding-box-content>
+                        <report-table [data]="chartsData?.Claimed"></report-table>
+                    </expanding-box-content>
+                </expanding-box>
+                
+                <expanding-box>
+                    <expanding-box-view>
+                        <mat-icon svgIcon="kpw_hands"></mat-icon>
+                        <h3>Referrals / Match</h3>
+                        <h2>{{ (rewards ? rewards.value.toFixed(4) : '...') }} / {{ (match ? match.value.toFixed(4) + ' ' + match.symbol : '...') }}</h2>
+                        <p>{{ (convertedRewards ? convertedRewards.substring(0, convertedRewards.length-3) : '...') }} / {{ (convertedMatch ? convertedMatch : '...') }}</p>
+                    </expanding-box-view>
+                    <expanding-box-content>
+                        <matches [matches]="matchData"></matches>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2>Direct</h2>
+                                <report-table [data]="chartsData?.Rewards"></report-table>
+                            </div>
+                            <div class="col-md-6">
+                                <h2>Match</h2>
+                                <report-table [data]="chartsData?.Match"></report-table>
+                            </div>
+                        </div>
+                    </expanding-box-content>
+                </expanding-box>
+                
+                <expanding-box>
+                    <expanding-box-view>
+                        <mat-icon svgIcon="kpw_coins"></mat-icon>
+                        <h3>Max Payout</h3>
+                        <h2>{{ (maxPay ? maxPay.value.toFixed(4) + ' ' + maxPay.symbol : '...') }}</h2>
+                        <!-- <p>{{ (convertedMaxPay ? convertedMaxPay : '...') }}</p> -->
+                    </expanding-box-view>
+                    <expanding-box-content>
+                        <report-table [data]="chartsData?.MaxPay"></report-table>
+                    </expanding-box-content>
+                </expanding-box>
+                
+                <expanding-box>
+                    <expanding-box-view>
+                        <mat-icon svgIcon="kpw_team"></mat-icon>
+                        <h3>Team</h3>
+                        <h2>{{ (team.direct != null ? team.direct : '...') }} / {{team.total != null ? team.total : '...'}}</h2>
+                    </expanding-box-view>
+                    <expanding-box-content>
+                        <buddy-table *ngIf="allTeam.length" [data]="allTeam"> </buddy-table>
+                    </expanding-box-content>
+                </expanding-box>
+        
+                <div class="pie-chart">
+                    <!-- <ngx-charts-pie-chart [results]="piechart">
+        
+                    </ngx-charts-pie-chart> -->
+                </div>
+                <!-- <div class="komp-item" (click)="toggleMatches()">
+                    
+                    
+                </div>
+                <div class="komp-item" (click)="showRows(5)">
+                    
+                </div>
+                <div class="komp-item">
+                    
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- <div class="row" [ngClass]="{'graph': multi.length}">
+        <ngx-charts-line-chart *ngIf="multi.length"
+            [showYAxisLabel]="yAxis"
+            [yAxisLabel]="yAxisLabel"
+            [yAxis]="yAxis"
+            [showxAxisLabel]="showXAxisLabel"
+            [xAxis]="xAxis"
+            [xAxisTicks]="xTicks"
+            [autoScale]="autoScale"
+            [results]="multi">
+        </ngx-charts-line-chart>
+    </div> -->
+</div>

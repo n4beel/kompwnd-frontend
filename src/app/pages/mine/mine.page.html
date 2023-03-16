@@ -1,0 +1,91 @@
+<div class="fluid-container">
+    <div class="row">
+        <div class="col-sm-12">
+            
+            <div class="card">
+                <div class="card-body mine-card">
+                    <h1>KPW Mining</h1>
+
+                    <div class="mine-row">
+                        <mg-container *ngIf="prod && mine.canMine">
+                            <button class="btn btn-white" (click)="mine.stop()" *ngIf="mine.isRunning">Stop Mining</button>
+                            <button class="btn btn-white" (click)="mine.start()" *ngIf="!mine.isRunning">Start Mining</button>
+                        </mg-container>
+
+                        <h3 *ngIf="prod && !mine.canMine">Connect Wallet before you can mine</h3>
+
+                        <h3 *ngIf="!prod">Mining is disabled on testnet</h3>
+                        
+                        <div class="buttons-right">
+                            <!-- <button class="btn btn-white mr-3" (click)="onClaimHashes()">Claim Hashes</button> -->
+                            <button class="btn btn-white" (click)="onDepositHashes()" [disabled]="!prod || !mine.canMine">Deposit</button>
+                        </div>
+                    </div>
+
+                    <div class="alert mt-3" [ngClass]="{'alert-danger': messageType == 'error', 'alert-success': messageType == 'success'}" role="alert" *ngIf="message">
+                        {{message}}
+                    </div>
+
+                    <div class="row info-row mt-3">
+                        <div class="col-md-4">
+                            <h2>Hashes</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Daily Earning</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Accepted</h2>
+                        </div>
+                    </div>
+
+                    <div class="row info-row">
+                        <div class="col-md-4">
+                            <h2>{{mine.totalHashes}} / {{ mine.Value.toFixed(4) }} KPW</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>{{ getDaily }} KPW</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>{{ accepted != undefined ? accepted : 0 }} / {{ acceptedVal != undefined ? acceptedVal.toFixed(4) : '0.0000'  }} KPW</h2>
+                        </div>
+                    </div>
+
+                    <div class="row info-row">
+                        <div class="col-md-4">
+                            <h4>{{mine.totalHashes}} / {{ convertedValue ? convertedValue : '...' }}</h4>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>{{ convertedDaily ? convertedDaily : '...' }}</h4>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>{{ accepted != undefined ? accepted : 0 }} / {{ convertedAccepted != undefined ? convertedAccepted : '0.00'  }}</h4>
+                        </div>
+                    </div>
+
+                    <mine-hashrate  [hashrate]="mine.hashesSecond"></mine-hashrate>
+
+                    <div class="row mt-4">
+                        <div class="col-md-3">
+                            <div class="mine-row mb-2">
+                                <h4>Threads</h4>
+                            </div>
+                            <div class="thread-buttons">
+                                <button class="btn btn-white" (click)="editThreads('sub')" [disabled]="!prod || !mine.canMine">-</button>
+                                <p>{{ threads }}</p>
+                                <button class="btn btn-white" (click)="editThreads('add')" [disabled]="!prod || !mine.canMine">+</button>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="mine-row mb-2">
+                                <h4>Utilization</h4>
+                                <h4>{{ range }}%</h4>
+                            </div>
+                            <input type="range" min="0" max="100" [(ngModel)]="range" (change)="editUtilization($event)" [disabled]="!prod || !mine.canMine">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

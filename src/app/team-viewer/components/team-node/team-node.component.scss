@@ -1,0 +1,64 @@
+
+:host {
+    // border: 1px solid #000;
+    display: flex;
+    width: fit-content;
+    padding: 3px 6px;
+    border-radius: 4px;
+  }
+  
+  h1 {
+    font-size: 25px;
+    text-align: center;
+    position: relative;
+    &.has-children::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 17px;
+      top: 100%;
+      background: #000;
+      left: 50%;
+    }
+  }
+  
+  .children {
+    display: flex;
+    border-top: 2px solid #000;
+  }
+  
+  node {
+    margin-right: 5px;
+    position: relative;
+    &:last-child {
+      margin-right: 0;
+    }
+  
+  
+    &:last-child::after,
+    &:first-child::after {
+      content: '';
+      position: absolute;
+      height: 10px;
+      top: -3px;
+      background: #fff;
+    }
+    &:first-child::after {
+      left: 0;
+      width: calc(50%);
+    }
+    &:last-child::after {
+      right: -2px;
+      width: calc(50%);
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 10px;
+      top: 0;
+      background: #000;
+      left: 50%;
+    }
+  }
+  

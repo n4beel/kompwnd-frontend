@@ -1,0 +1,25 @@
+table {
+    width: 100%;
+    margin-top: 15px;
+
+    tr {
+        th {
+            color: white;
+            font-size: bold;
+            border-bottom: 2px solid white;
+
+            &:last-child {
+                text-align: right;
+            }
+        }
+        
+        td {
+            color: white;
+            text-align: left;
+
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+}

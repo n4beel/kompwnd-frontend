@@ -1,0 +1,66 @@
+:host {
+    width: 33.33%;
+    height: 25%;
+    // border-radius: 15px;
+    border: 2px solid transparent;
+    transition-timing-function: ease-in-out;
+    transition: opacity .1s, top .3s, left .3s, width .3s, height .3s;
+    overflow: hidden;
+    
+    .content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+        }
+
+    }
+
+    &:hover {
+        border: 2px solid white;
+    }
+
+
+
+    @media screen and (max-width: 480px) {
+        width: 50%;
+        height: 25%;
+    }
+
+    &:not(.expanded) {
+        cursor: pointer;
+    }
+
+    &.hold {
+        position: absolute;
+
+        opacity: 0;
+        z-index: -1;
+    }
+
+    &.animating {
+        z-index: 1;
+        position: absolute;
+        border: 2px solid white;
+    }
+
+    &.expanded {
+        z-index: 1;
+        position: absolute;
+        width: 100%;
+        height: calc(100% - 40px) !important;
+        top: 20px !important;
+        left: 0px !important;
+        border: 2px solid white;
+    }
+
+    
+}

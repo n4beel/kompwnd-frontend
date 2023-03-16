@@ -1,0 +1,79 @@
+ <!-- Initial page load -->
+<div *ngIf="success==false" class="fluid-container">
+  <div class="row justify-content-md-center">
+    <div class="card">
+      
+      <div class="card-body">
+        
+        <h1 class="mb-0">Kompwnd Checkout page</h1>
+        <p class="mb-0">KPW price may very based on the USD/KPW pair.</p>
+        <p>
+          Prices will be refreshed after every 30 seconds, please complete your payment before that.
+        </p>
+
+        <label for="" class="mt-3">From</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="fromName"
+          [(ngModel)]="fromName"
+          disabled
+        />
+
+        <label for="" class="mt-3">To</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="toName"
+          [(ngModel)]="toName"
+          disabled
+        />
+
+        <div class="spin-body">
+        <label for="" class="mt-3">Amount in KPW&nbsp;(Available: {{(kpwAvailable ? kpwAvailable.value + ' ' + kpwAvailable?.symbol : '...') }})</label> &nbsp;&nbsp;&nbsp; <span><spinner class="spin-outer" *ngIf="isPriceUpdated"></spinner></span>
+        </div>
+        
+        <input
+          type="text"
+          class="form-control"
+          placeholder="amount"
+          [(ngModel)]="kpwDisplay"
+          disabled
+          *ngIf="!isPriceUpdated"
+        />
+        
+        <span *ngIf="loading"> 
+          <spinner style="padding:0; margin-top: 10px;"></spinner>  
+        </span> 
+        <button
+          class="btn btn-white mt-3"
+          (click)="onCheckout()"
+          *ngIf="!loading"
+          [disabled]="isPriceUpdated"
+        >
+            Transfer KPW
+         
+        </button>
+        
+        <!--  -->
+        <!-- <span>Transfer KPW</span> -->
+      
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-danger mt-3 error-class" role="alert" *ngIf="message">
+    {{message}}
+  </div>
+</div>
+
+<!-- Order success -->
+<!-- <div *ngIf="success==true" class="fluid-container">
+	  <div class="row  justify-content-md-center">
+		  <div class="card">
+			  <div class="card-body">
+				  <h1>Thank you very much for booking time with Adil Abbas</h1>    
+				  <p>Please attend the Zoom meeting on time. Payment is nonrefundable.</p>            
+			  </div>
+		  </div>
+	  </div>
+  </div> -->

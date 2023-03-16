@@ -1,0 +1,47 @@
+<div class="fluid-container">
+    <div class="row  justify-content-md-center">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Add Liquidity</h1>
+                    <div class="space-between"><b>Amount</b> <p>{{(alaBalance ? alaBalance.value.toFixed(alaBalance.precision) + ' ' + alaBalance.symbol : '0.0000 ALA')}}</p></div>
+    
+                    <div class="input-like">
+                        <input type="number" placeholder="0.0000" [(ngModel)]="alaValue" (input)="onCalcTok()">
+                        <span>ALA</span>
+                    </div>
+
+                    <div class="space-between"><b>Amount</b> <p>{{(kpwBalance ? kpwBalance.value.toFixed(kpwBalance.precision) + ' ' + kpwBalance.symbol : '0.0000 KPW')}}</p></div>
+                    
+                    <div class="input-like">
+                        <input type="number" placeholder="0.0000" [(ngModel)]="kpwValue" readonly>
+                        <span>KPW</span>
+                    </div>
+
+                    <div class="card fees mt-3" *ngIf="liqReturn">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Estimated Liquidity
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <p>{{ liqReturn.value.toFixed(liqReturn.precision) }} {{ liqReturn.symbol }}</p>
+                                    <p>{{ liqPercent }} %</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-white mt-3" (click)="onAddLiquidity()" *ngIf="!errFixKpw">Add Liquidity</button>
+
+                    <button class="btn btn-white my-3" (click)="onFixLiquidity()" *ngIf="errFixKpw">Fix Liquidity</button>
+
+                    <div class="alert alert-danger mt-3" role="alert" *ngIf="message">
+                        {{message}}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

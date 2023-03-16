@@ -1,0 +1,3 @@
+<h3>Match Rewards</h3>
+<p><b>User</b> <b>Value</b> <b>Date Received</b></p>
+<p *ngFor="let match of matches"><span>{{match.user}}</span> <span>{{match.value}}</span> <span>{{ (match.dateTime * 1000) | date:'medium' }}</span></p>

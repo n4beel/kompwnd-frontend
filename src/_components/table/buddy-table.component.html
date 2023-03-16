@@ -1,0 +1,10 @@
+<table *ngIf="buddyData.length">
+    <tr>
+        <th>User</th>
+        <th>Buddy</th>
+    </tr>
+    <tr *ngFor="let row of buddyData">
+        <td>{{ row.user }}</td>
+        <td>{{ row.buddy }}</td>
+    </tr>
+</table>

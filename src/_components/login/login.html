@@ -1,0 +1,10 @@
+<h1>Login</h1>
+<form (submit)="onSubmit()">
+    <label for="" class="mt-3">Mnemonic Code</label>
+    <textarea class="form-control" [(ngModel)]="mnemonicCode" placeholder="Mnemonic Code" cols="30" rows="10" [readonly]="loading" name="mnemonicCode"></textarea>
+    <label for="" class="mt-3">Password</label>
+    <input type="password" [(ngModel)]="password" placeholder="Password" class="form-control" [readonly]="loading" name="password">
+</form>
+
+<spinner *ngIf="loading"></spinner>
+<button class="btn btn-danger mt-3" (click)="onSubmit()" *ngIf="!loading">Login</button>

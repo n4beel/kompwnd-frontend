@@ -1,0 +1,13 @@
+# pack-refs with: peeled fully-peeled sorted 
+6f01bc900032dd5c1d20b6573a48258c06d74bbc refs/remotes/origin/bugfix/card-checkout-button
+0f8983fc6408f3f6fa3a428c60109d6879573ea4 refs/remotes/origin/bugfix/crypto-checkout-validation
+3ed49ef5c58e40133ddb02757dcde7add6ec1041 refs/remotes/origin/feature/ecomm-checkout
+4d272a0a934af294d7c9b2b8826cabb8c40ac5af refs/remotes/origin/feature/one-pager-html
+1d42ae6b27980d9ba6fb70e6af32ebd15be4fd97 refs/remotes/origin/feature/team-viewer-analytics
+c35d74f5f91c0783e9175b025e3e87f5a3b38620 refs/remotes/origin/fix/stripe-payment-issue
+df51ac5ef7835fb7c926f99a8ea662aa1a9e0e40 refs/remotes/origin/hall-of-fame
+afb794f43f302a778b2ad00f23f8ef7614b7707e refs/remotes/origin/landing-page
+04f6ad5f120bf191dc83fe25f3596547123eb7ed refs/remotes/origin/main
+04f6ad5f120bf191dc83fe25f3596547123eb7ed refs/remotes/origin/revamp
+33c74e4ef99cc6449e8af0cd4a7788bec05b78b1 refs/remotes/origin/test
+175d48610e7e85983dd879fc1c02dc5a15e54b11 refs/remotes/origin/v1/stripe

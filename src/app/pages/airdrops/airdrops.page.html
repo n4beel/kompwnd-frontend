@@ -1,0 +1,77 @@
+<div class="fluid-container">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>Airdrops</h1>
+                    <label for="">Team</label>
+                    <input type="text" placeholder="Username" class="form-control" [(ngModel)]="drop.team" (change)="successRun = false">
+                    <label for="" class="mt-3">Campaign</label>
+                    <select name="" id="" class="form-control" [(ngModel)]="drop.type" (change)="successRun = false">
+                        <option value="0">Divide budget between all matching players</option>
+                        <option value="1">Rewards budget to one lucky player</option>
+                        <option value="5">Divide budget across 5 matching players</option>
+                        <option value="20">Divide budget across 20 matching players</option>
+                        <option value="50">Divide budget across 50 matching players</option>
+                        <option value="100">Divide budget across 100 matching players</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 mt-3">
+                    <label for="">Minimum directs</label>
+                    <input type="number" class="form-control" [(ngModel)]="drop.directs" (change)="successRun = false"> 
+                </div>
+                <div class="col-sm-4 mt-3">
+                    <label for="">Team depth</label>
+                    <input type="number" class="form-control" [(ngModel)]="drop.depth" (change)="successRun = false">
+                </div>
+                <div class="col-sm-4 mt-3">
+                    <label for="">Minimum net deposit (KPW)</label>
+                    <input type="text" class="form-control" [(ngModel)]="drop.deposit" (change)="successRun = false">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="space-between mt-3">
+                        <label>Budget</label>
+                        <label for="">Available <b>{{kpwAvailable?.value}} KPW</b></label>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control mt-2" placeholder="0.0000 KPW" [(ngModel)]="drop.drop" (change)="successRun = false">
+                </div>
+                <div class="col-sm-12 mt-3">
+                    <button class="btn btn-white mr-2" (click)="onRunTest()">RUN</button>
+                    <button class="btn btn-white" (click)="onSend()">SEND</button>
+                </div>
+                <div class="col-sm-12">
+                    <div class="alert alert-danger mt-3" role="alert" *ngIf="message">
+                        {{message}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <team-viewer *ngIf="team" [team]="team"></team-viewer>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Campaign Log</h3>
+                            <div class="log" #log>
+                                <p *ngFor="let line of testRunLog" ngPreserveWhitespaces>{{ line }}</p>
+                                <p class="log-running" *ngIf="logRunning"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

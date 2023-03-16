@@ -1,0 +1,15 @@
+.buttons-container {
+    margin-top: 15px;
+
+    .btn {
+        margin: 0px 15px;
+        
+        &:first-child {
+            margin-left: unset;
+        }
+        
+        &:last-child {
+            margin-right: unset;
+        }
+    }
+}

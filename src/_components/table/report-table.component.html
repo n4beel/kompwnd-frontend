@@ -1,0 +1,12 @@
+<table *ngIf="reportData">
+    <tr>
+        <th>Date</th>
+        <th class="kpw">KPW Value</th>
+        <!-- <th>USD Value</th> -->
+    </tr>
+    <tr *ngFor="let row of reportData.series">
+        <td>{{ row.name | date : 'short' }}</td>
+        <td class="kpw">{{ row.kpw?.toFixed(4) }}</td>
+        <!-- <td>$ {{ row.value.toFixed(2) }}</td> -->
+    </tr>
+</table>

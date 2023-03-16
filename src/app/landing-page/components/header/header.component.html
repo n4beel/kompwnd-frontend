@@ -1,0 +1,90 @@
+<header>
+  <div class="container">
+      <div class="innerWrapperHeader">
+        <div class="hamburger">
+          <span class="active"></span>
+        </div>
+          <div class="leftContainerHeader">
+              <img src="../../../../assets/images/2.svg">
+              <div class="wrapperSelectorNew">
+                <div class="openerContainer" (click)="showProductDropdown=!showProductDropdown" #productRef>
+                  <img src="../../../../assets/images/header/grid.png" alt="">
+                  <span class="contentSelected">Products <img src="../../../../assets/images/header/tick.png" alt=""></span>
+                </div>
+                <div class="dropDownMenuProducts" [ngClass]="{'active': showProductDropdown}">
+                  <ul>
+                    <li>
+                      <span>
+                        <img src="../../../../assets/images/header/3.png" alt="">
+
+                      </span>
+                      <div class="contentHeaderPrudts">
+                        <h4>Earn</h4>
+                        <p>
+                          Smart crypto-based investment system powered by decentralized smart contracts
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>
+                        <img src="../../../../assets/images/header/2.png" alt="">
+                      </span>
+                      <div class="contentHeaderPrudts">
+                        <h4>Insurance</h4>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>
+                        <img src="../../../../assets/images/header/4.png" alt="">
+                      </span>
+                      <div class="contentHeaderPrudts">
+                        <h4>Swap</h4>
+                        <p>
+                          Quick Conversation, Cross chain swaping made easy
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>
+                        <img src="../../../../assets/images/header/1.png" alt="">
+
+                      </span>
+                      <div class="contentHeaderPrudts">
+                        <h4>Staking</h4>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </p>
+                      </div>
+                    </li>
+                    <li>
+                      <span>
+                        <img src="../../../../assets/images/header/5.png" alt="">
+                      </span>
+                      <div class="contentHeaderPrudts">
+                        <h4>Predict</h4>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+          <div class="rightContainerHeader">
+              <nav>
+                  <ul>
+                      <li><a href="javascript:void(0);">Ecosystem</a></li>
+                      <li><a href="javascript:void(0);">Community</a></li>
+                      <li><a href="javascript:void(0);">Blog</a></li>
+                      <li><a href="javascript:void(0);">FAQ</a></li>
+                      <li><a href="javascript:void(0);" (click)="onRegisterClick()" class="PrimaryButton">{{globals.userName ? globals.userName: 'Connect Wallet'}}</a></li>
+                  </ul>
+              </nav>
+          </div>
+      </div>
+  </div>
+</header>

@@ -1,0 +1,40 @@
+<div class="containerWithdraw">
+  <div class="containerInnerWithDraw">
+    <h3>Roll</h3>
+    <div class="wrapperBoxWithDraw">
+      <ul>
+        <li>
+          <h5>Available Dividend <span>{{rewardDetail?.divAmount | number : '1.4-4'}} KPW ≈ $ {{rewardDetail?.divAmount * usdConversionValue | number : '1.2-2'}}</span></h5>
+        </li>
+        <li>
+          <h5>Match Bonus <span>{{rewardDetail?.matchBonus | number : '1.4-4'}} KPW ≈ $ {{rewardDetail?.matchBonus * usdConversionValue | number : '1.2-2'}}</span></h5>
+        </li>
+        <li>
+          <h5>Referral Bonus <span>{{rewardDetail?.referralBonus | number : '1.4-4'}} KPW ≈ $ {{rewardDetail?.referralBonus * usdConversionValue | number : '1.2-2'}}</span></h5>
+        </li>
+        <hr>
+        <li>
+          <h5>Total <span>{{rewardDetail?.totalAmount | number : '1.4-4'}} KPW ≈ $ {{rewardDetail?.totalAmount * usdConversionValue | number : '1.2-2'}}</span></h5>
+        </li>
+        <li class="platformFee">
+          <h5>Platform Fee <small>(10%)</small></h5>  <span>{{rewardDetail?.platformFee | number : '1.4-4'}} KPW ≈ $ {{rewardDetail?.platformFee * usdConversionValue | number : '1.2-2'}}</span>
+        </li>
+      </ul>
+      <div class="netAmmount">
+        <h5>Net Amount <span>{{rewardDetail?.netAmount | number : '1.4-4'}} KPW ≈ $ {{rewardDetail?.netAmount * usdConversionValue | number : '1.2-2'}}</span></h5>
+        <div class="alertWrapperInput" [ngClass]="{'active': showError }">
+          <span class="closeAlert" (click)="showError= false"></span>
+          <h4>Error <span>{{errorMessage}}</span></h4>
+        </div>
+        <button class="PrimaryButton" (click)="openDialog()">Proceed</button>
+      </div>
+    </div>
+  </div>
+  <div  class="popupWrapper" [ngClass]="{'active': message }">
+    <div class="popup">
+      <img src="../../../../assets/images/tick.png" alt="">
+      <p>{{message}}</p>
+      <span class="red">Note: Available Dividend should be $50 to withdraw total amount</span>
+    </div>
+  </div>
+</div>
