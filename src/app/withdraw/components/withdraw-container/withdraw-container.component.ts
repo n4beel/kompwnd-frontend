@@ -10,7 +10,7 @@ import { ValidateMnemonicComponent } from 'src/app/shared/components/validate-mn
 @Component({
   selector: 'app-withdraw-container',
   templateUrl: './withdraw-container.component.html',
-  styleUrls: ['./withdraw-container.component.scss']
+  styleUrls: ['./withdraw-container.component.scss'],
 })
 export class WithdrawContainerComponent implements OnInit {
   message = '';
@@ -23,52 +23,57 @@ export class WithdrawContainerComponent implements OnInit {
   formsubmitted = false;
   activePrivateKey = '';
 
-  constructor(private transactionService: TransactionService,
+  constructor(
+    private transactionService: TransactionService,
     private conversionService: ConversionService,
     private spinner: NgxSpinnerService,
     private eos: EosService,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<ValidateMnemonicComponent>,
-    private globals: Globals) { }
+    private globals: Globals
+  ) {}
 
   async ngOnInit() {
-    this.spinner.show()
-    await this.getUsdConversionValue()
-    this.getRewardDetail()
+    this.spinner.show();
+    await this.getUsdConversionValue();
+    this.getRewardDetail();
   }
 
   getRewardDetail() {
     this.transactionService.rewardDetail('/reward').then((res: any) => {
-      console.log(res)
+      console.log(res);
       if (res && res.status === 200) {
-        const totalAmount = res.reward.divAmount + res.reward.referralBonus + res.reward.matchBonus;
+        const totalAmount =
+          res.reward.divAmount +
+          res.reward.referralBonus +
+          res.reward.matchBonus;
         this.rewardDetail = {
           ...res.reward,
-          totalAmount: totalAmount, 
-          platformFee: totalAmount * .10,
-          netAmount: totalAmount - (totalAmount * .10), 
-        }
+          totalAmount: totalAmount,
+          platformFee: totalAmount * 0.1,
+          netAmount: totalAmount - totalAmount * 0.1,
+        };
       }
-      this.spinner.hide()
-    }); 
+      this.spinner.hide();
+    });
   }
-  
+
   async getUsdConversionValue() {
     this.usdConversionValue = await this.conversionService.getKPWUsd();
   }
-  
+
   openDialog() {
     this.showError = false;
     this.formsubmitted = true;
     this.dialogRef = this.dialog.open(ValidateMnemonicComponent);
-    this.dialogRef.componentInstance.accountValidated.subscribe(result => {
+    this.dialogRef.componentInstance.accountValidated.subscribe((result) => {
       if (result) {
         this.activePrivateKey = result;
         this.eos.initialize(this.activePrivateKey);
         this.dialogRef.close();
         setTimeout(() => {
           this.onProceed();
-        }, 100)
+        }, 100);
       }
       console.log('Got the data!', result);
     });
@@ -79,44 +84,49 @@ export class WithdrawContainerComponent implements OnInit {
     //   this.errorMessage = 'Amount must be greater than $50'
     //   this.showError = true;
     //   return;
-    // } 
+    // }
 
     this.spinner.show();
-    console.log(this.globals.userName)
+    console.log(this.globals.userName);
 
     this.eos
-        .pushTransaction(
-          'request',
-          this.globals.userName,
-          {user: this.globals.userName, action: 'claim'},
-          'kompwnd'
-        )
-        .then((data: any) => {
-          if (data.transaction_id) {
-            this.transactionService.withdraw('/reward/claim').then((res: any) => {
-              console.log(res)
+      .pushTransaction(
+        'request',
+        this.globals.userName,
+        { user: this.globals.userName, action: 'claim' },
+        'kompwnd'
+      )
+      .then((data: any) => {
+        if (data.transaction_id) {
+          this.transactionService
+            .withdraw('/reward/claim')
+            .then((res: any) => {
+              console.log(res);
               if (res && res.status === 200) {
                 this.getRewardDetail();
-                this.showMessage('You have successfully withdraw your referral amount only')
+                this.showMessage(
+                  'You have successfully withdrawn your rewards'
+                );
               } else {
-                console.log(res)
-                this.errorMessage = res.message
+                console.log(res);
+                this.errorMessage = res.message;
                 this.showError = true;
               }
               this.spinner.hide();
-            }).catch((res) => {
-              console.log(res)
-              this.errorMessage = res.error.error
+            })
+            .catch((res) => {
+              console.log(res);
+              this.errorMessage = res.error.error;
               this.showError = true;
               this.spinner.hide();
-            }); 
-          } else {
-            console.log(data)
-            this.errorMessage = 'Unable to withdraw you amount'
-            this.showError = true
-            this.spinner.hide();
-          }
-        });
+            });
+        } else {
+          console.log(data);
+          this.errorMessage = 'Unable to withdraw you amount';
+          this.showError = true;
+          this.spinner.hide();
+        }
+      });
   }
 
   showMessage(message: string) {
