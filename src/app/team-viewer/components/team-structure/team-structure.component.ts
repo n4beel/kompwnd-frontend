@@ -8,14 +8,13 @@ import { TeamViewerService } from '../../team-viewer.service';
 @Component({
   selector: 'app-team-structure',
   templateUrl: './team-structure.component.html',
-  styleUrls: ['./team-structure.component.scss']
+  styleUrls: ['./team-structure.component.scss'],
 })
 export class TeamStructureComponent implements OnInit {
-  @Input() showConnectedUserTeam = false
+  @Input() showConnectedUserTeam = false;
   team: any;
   teamAnalytics: any;
-  currentDate = new Date()
-
+  currentDate = new Date();
 
   responseRecieved: boolean = false;
   showLoader: boolean = false;
@@ -31,15 +30,15 @@ export class TeamStructureComponent implements OnInit {
     private teamViewerService: TeamViewerService,
     private globals: Globals
   ) {
-    this.currentDate = new Date()
+    this.currentDate = new Date();
   }
 
   ngOnInit(): void {
     if (this.showConnectedUserTeam) {
       this.reportSearchFilterForm.patchValue({
-        username: this.globals.userName
-      })
-      this.onGetTeam()
+        username: this.globals.userName,
+      });
+      this.onGetTeam();
     }
   }
 
@@ -52,29 +51,37 @@ export class TeamStructureComponent implements OnInit {
       this.showLoader = false;
       return;
     }
-    this.getTeam(this.reportSearchFilterForm.value)
+    this.getTeam(this.reportSearchFilterForm.value);
   }
 
   getTeam(value) {
     this.responseRecieved = false;
-    this.teamViewerService.getTeams(value)
+    this.teamViewerService
+      .getTeams(value)
       .then((res: any) => {
         this.responseRecieved = true;
         this.showLoader = false;
         if (res) {
-          const team = Object.assign({},
+          console.log(
+            'file: team-structure.component.ts:65  TeamStructureComponent  .then  res:',
+            res
+          );
+          const team = Object.assign(
+            {},
             {
               name: res.name,
-              cssClass: res.highlight ? 'oc-background' : '',
-              childs: this.appendCssFile(res.childs)
+              image: `../../../../assets/alphabets/${res.name[0]?.toUpperCase()}.svg`,
+              cssClass: 'oc-background-start',
+              childs: this.appendCssFile(res.childs),
             }
-          )
-          this.team = [team]
+          );
+          this.team = [team];
         }
-      }).catch((error) => {
-        console.log(error)
+      })
+      .catch((error) => {
+        console.log(error);
         this.showError = true;
-        this.errorHeading = 'Error'
+        this.errorHeading = 'Error';
         this.errorMessage = 'User does not exist.';
         this.showLoader = false;
       });
@@ -83,10 +90,10 @@ export class TeamStructureComponent implements OnInit {
     return childs.map((m) => {
       return {
         name: m.name,
-        cssClass: m.highlight ? 'oc-background': '',
-        childs: this.appendCssFile(m.childs)
-    };
-    })
+        image: `../../../../assets/alphabets/${m.name[0]?.toUpperCase()}.svg`,
+        cssClass: m.highlight ? 'oc-background' : '',
+        childs: this.appendCssFile(m.childs),
+      };
+    });
   }
-
 }

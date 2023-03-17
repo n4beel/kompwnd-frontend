@@ -1,46 +1,78 @@
 <div class="tabWrapper">
-    <div class="tabContainer1">
-      <form [formGroup]="reportSearchFilterForm">
-      <div class="formWrapper" >
-          <div class="inputWrapper">
-            <label for="Username">Username</label>
-            <input type="text" placeholder="User name" formControlName="username">
-            <ngx-form-error [control]="reportSearchFilterForm.get('username')"></ngx-form-error>
-          </div>
-          <div class="inputWrapper">
-            <label for="Range">Range</label>
-            <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [selectMode]="'range'"  [max]="currentDate" placeholder="Date Time"  formControlName="dateRange">
-            <owl-date-time #dt1 [pickerType]="'calendar'" ></owl-date-time>
-              <ngx-form-error [control]="reportSearchFilterForm.get('dateRange')"></ngx-form-error>
-          </div>
-          <div class="inputWrapper">
-            <label for="Report Type">Limit</label>
-            <input  name="Report Type" type="number" formControlName="limit" min="1" oninput="this.value =
-            !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
-            <ngx-form-error [control]="reportSearchFilterForm.get('limit')"></ngx-form-error>
-          </div>
-          <button class="PrimaryButton" appPreventDoubleClick (throttledClick)="onGetTeam()" [throttleTime]="700">Submit</button>
+  <div class="tabContainer1">
+    <form [formGroup]="reportSearchFilterForm">
+      <div class="formWrapper">
+        <div class="inputWrapper">
+          <label for="Username">Username</label>
+          <input
+            type="text"
+            placeholder="User name"
+            formControlName="username"
+          />
+          <ngx-form-error
+            [control]="reportSearchFilterForm.get('username')"
+          ></ngx-form-error>
         </div>
-        </form>
-    </div>
-    <div class="alertWrapperInput" [ngClass]="{'active': showError}">
-      <span class="closeAlert" (click)="showError=false"></span>
-      <h4>{{errorHeading}} <span>{{errorMessage}}</span></h4>
-    </div>
-  </div>
-  <!-- <ng-container *ngIf="team && team.name">
-  </ng-container> -->
-  <div class="chartWrapperTeam">
-    <ngx-org-chart [nodes]="team" direction="vertical" ></ngx-org-chart>
-  </div>
-  <div *ngIf="responseRecieved && !team">
-    <p class="noDataFound">No Data Found</p>
-  </div>
-  <div *ngIf="showLoader">
-    <div class="mainLoader">
-      <div class="loader3">
-        <span></span>
-        <span></span>
+        <div class="inputWrapper">
+          <label for="Range">Range</label>
+          <input
+            [owlDateTime]="dt1"
+            [owlDateTimeTrigger]="dt1"
+            [selectMode]="'range'"
+            [max]="currentDate"
+            placeholder="Date Time"
+            formControlName="dateRange"
+          />
+          <owl-date-time #dt1 [pickerType]="'calendar'"></owl-date-time>
+          <ngx-form-error
+            [control]="reportSearchFilterForm.get('dateRange')"
+          ></ngx-form-error>
+        </div>
+        <div class="inputWrapper">
+          <label for="Report Type">Limit</label>
+          <input
+            name="Report Type"
+            type="number"
+            formControlName="limit"
+            min="1"
+            oninput="this.value =
+            !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+          />
+          <ngx-form-error
+            [control]="reportSearchFilterForm.get('limit')"
+          ></ngx-form-error>
+        </div>
+        <button
+          class="PrimaryButton"
+          appPreventDoubleClick
+          (throttledClick)="onGetTeam()"
+          [throttleTime]="700"
+        >
+          Submit
+        </button>
       </div>
+    </form>
+  </div>
+  <div class="alertWrapperInput" [ngClass]="{ active: showError }">
+    <span class="closeAlert" (click)="showError = false"></span>
+    <h4>
+      {{ errorHeading }} <span>{{ errorMessage }}</span>
+    </h4>
+  </div>
+</div>
+<!-- <ng-container *ngIf="team && team.name">
+  </ng-container> -->
+<div class="chartWrapperTeam">
+  <ngx-org-chart [nodes]="team" direction="vertical"></ngx-org-chart>
+</div>
+<div *ngIf="responseRecieved && !team">
+  <p class="noDataFound">No Data Found</p>
+</div>
+<div *ngIf="showLoader">
+  <div class="mainLoader">
+    <div class="loader3">
+      <span></span>
+      <span></span>
     </div>
   </div>
+</div>
