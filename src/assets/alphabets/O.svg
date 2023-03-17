@@ -1,6 +1,18 @@
-<svg width="29" height="29" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="14.5" cy="14.5" r="14.5" fill="white" />
-  <text x="50%" y="50%" font-size="10px" font-family="Poppins" text-anchor="middle" alignment-baseline="middle" fill="#898989">
-    O
-  </text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #898989;
+        font-family: Poppins-Regular, Poppins, sans-serif;
+        font-size: 10px;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="14.5" cy="14.5" r="14.5"/>
+  <text class="cls-2" transform="translate(10.82 18.54)"><tspan x="0" y="0">O</tspan></text>
 </svg>
