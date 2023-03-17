@@ -1,5 +1,6 @@
 // @import url("https://p.typekit.net/p.css?s=1&k=lpw2hdo&ht=tk&f=1706&a=60567341&app=typekit&e=css");
 @import "~@danielmoncada/angular-datetime-picker/assets/style/picker.min.css";
+@import '~ngx-org-chart/_theming.scss';
 @import "~ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
 @import "~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
 // @font-face {
@@ -706,11 +707,11 @@ select {
   background-repeat: no-repeat;
 }
 
-.oc-border {
+.ngx-org-border {
     border: 1px solid green;
 }
 
-.oc-background {
+.ngx-org-background {
   width: 142px;
   height: 46px;
   background: #25282D;
@@ -726,28 +727,28 @@ select {
   justify-content: center;
 }
 
-.oc-name {
+.ngx-org-name {
     font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     white-space: nowrap;
 }
 
-.oc-designation {
+.ngx-org-designation {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: italic;
     white-space: nowrap;
 }
 
-.oc-img {
+.ngx-org-img {
     margin-left: -10px;
     width: 60px;
     height: 60px;
 }
 
-.oc-img {
+.ngx-org-img {
   display: none;
 }
 
-.oc-name {
+.ngx-org-name {
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -756,11 +757,11 @@ select {
   color: #FFFFFF;
 }
 
-.oc-designation {
+.ngx-org-designation {
   display: none;
 }
 
-.oc-border {
+.ngx-org-border {
   border: 1px solid #FFFFFF;
   /* margin: 5px 0px; */
   margin-bottom: 5px;
@@ -773,11 +774,11 @@ ng2-org-chart {
 .tabWrapper {
   margin-bottom: 41px;
 }
-.oc-box.oc-border.oc-background.og-green {
+.ngx-org-box.ngx-org-border.ngx-org-background.og-green {
   background: #66B032 !important;
 border-radius: 8px;
 }
-.oc-box.oc-border.oc-background.og-pink {
+.ngx-org-box.ngx-org-border.ngx-org-background.og-pink {
   background: #E91F92 !important;
   border-radius: 8px;
 }
@@ -1072,13 +1073,14 @@ p.noDataFound {
 
 .alertToast {
 	width: 384px;
-	height: 77px;
+	min-height: 77px;
 	background: #343434;
 	border-radius: 8px;
 	display: flex;
 	align-items: center;
 	overflow: hidden;
-	padding: 0px 20px;
+  padding: 6px 20px;
+  gap: 20px;
 }
 
 .toastAlert {
@@ -1088,23 +1090,20 @@ p.noDataFound {
 	z-index: 888;
 	left: -100%;
 	transition: 0.8s all;
+  gap: 20px;
 }
 .toastAlert.active {
 	left: 60px
 }
 
 .alertToast h5 span {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 1; /* number of lines to show */
-	-webkit-box-orient: vertical;
-	font-family: 'Poppins';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 24px;
-	color: #FFFFFF;
+  overflow: hidden;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
 }
 
 .alertToast h5 {
@@ -1116,6 +1115,7 @@ p.noDataFound {
 	color: #FFFFFF;
 	margin-left: 14px;
 	max-width: 250px;
+  margin: 0px;
 }
 
 .depositWrapper {
@@ -2143,5 +2143,59 @@ section.growing a.PrimaryButton {
 @media only screen and (max-width: 1200px) {
   .mainlargeContainer .container {
     max-width: 1140px !important;
+  }
+}
+
+.ngx-org-border > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.ngx-org-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: normal;
+  color: #898989;
+}
+.ngx-org-border > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.ngx-org-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: normal;
+    color: #898989;
+}
+
+.ngx-org-box {
+    margin-bottom: 0 !important;
+    margin-top: 0px !important;
+}
+
+.ngx-org-border {
+    border: 1px solid #FFFFFF;
+}
+
+.ngx-org-connector {/* margin-bottom: 0; *//* background: red; *//* height: 1px; *//* border: none; */}
+
+.ngx-org-border.ngx-org-connector-vertical {
+    margin-top: -6px;
+    height: 19px;
+}
+
+.ngx-org-box {
+    position: relative;
+}
+@media only screen and (max-width: 1200px) {
+  .chartWrapperTeam {
+      overflow: auto;
   }
 }

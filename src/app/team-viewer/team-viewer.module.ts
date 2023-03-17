@@ -17,23 +17,21 @@ import { ConversionService } from '../services/conversion.service';
 // import { SocketService } from '../services/socket.service';
 // import { StripeService } from '../services/stripe.service';
 import { NgxFormErrorModule } from 'ngx-form-error';
-import { OrgChartModule } from 'ng2-org-chart';
 import { TeamViewerService } from './team-viewer.service';
 // import {MatNativeDateModule} from '@angular/material/core';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 import { SharedModule } from '../shared/shared.module';
-import { TeamNodeComponent } from './components/team-node/team-node.component';
-
+import { NgxOrgChartModule } from 'ngx-org-chart';
 @NgModule({
-  declarations: [TeamViewerContainerComponent, ReportingComponent, TeamStructureComponent, TeamNodeComponent],
+  declarations: [TeamViewerContainerComponent, ReportingComponent, TeamStructureComponent],
   imports: [
     CommonModule,
+    NgxOrgChartModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
     TeamViewerRoutingModule,
     NgxFormErrorModule,
-    OrgChartModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
     SharedModule

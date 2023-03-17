@@ -47,6 +47,7 @@
     "ngx-form-error": "^1.1.3",
     "ngx-markdown": "^11.1.2",
     "ngx-modal-dialog": "^4.0.0",
+    "ngx-org-chart": "^1.1.1",
     "ngx-owl-carousel-o": "^4.1.1",
     "ngx-spinner": "^10.0.1",
     "ngx-stripe": "^12.7.0",

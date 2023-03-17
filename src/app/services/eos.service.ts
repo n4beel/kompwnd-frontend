@@ -46,7 +46,6 @@ export class EosService {
     const key = activePrivateKey ? [activePrivateKey] : []
     let signatureProvider: JsSignatureProvider = new JsSignatureProvider(key);
     let rpc: JsonRpc = (this.rpc = new JsonRpc(this.endpoint, { fetch }));
-    console.log(this.rpc)
     this.api = new Api({
       rpc,
       signatureProvider,

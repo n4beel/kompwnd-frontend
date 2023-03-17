@@ -15,8 +15,8 @@ export class TeamStructureComponent implements OnInit {
   team: any;
   teamAnalytics: any;
   currentDate = new Date()
-  
-  
+
+
   responseRecieved: boolean = false;
   showLoader: boolean = false;
   reportSearchFilterForm: FormGroup = new FormGroup({
@@ -58,11 +58,19 @@ export class TeamStructureComponent implements OnInit {
   getTeam(value) {
     this.responseRecieved = false;
     this.teamViewerService.getTeams(value)
-      .then((res) => {
-        console.log(res)
+      .then((res: any) => {
         this.responseRecieved = true;
         this.showLoader = false;
-        this.team = res;
+        if (res) {
+          const team = Object.assign({},
+            {
+              name: res.name,
+              cssClass: res.highlight ? 'oc-background' : '',
+              childs: this.appendCssFile(res.childs)
+            }
+          )
+          this.team = [team]
+        }
       }).catch((error) => {
         console.log(error)
         this.showError = true;
@@ -70,6 +78,15 @@ export class TeamStructureComponent implements OnInit {
         this.errorMessage = 'User does not exist.';
         this.showLoader = false;
       });
+  }
+  appendCssFile(childs) {
+    return childs.map((m) => {
+      return {
+        name: m.name,
+        cssClass: m.highlight ? 'oc-background': '',
+        childs: this.appendCssFile(m.childs)
+    };
+    })
   }
 
 }

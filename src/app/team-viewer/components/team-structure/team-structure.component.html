@@ -28,9 +28,11 @@
       <h4>{{errorHeading}} <span>{{errorMessage}}</span></h4>
     </div>
   </div>
-  <ng-container *ngIf="team && team.name">
-    <app-team-node [name]="team.name" [subordinates]="team.subordinates"></app-team-node>
-  </ng-container>
+  <!-- <ng-container *ngIf="team && team.name">
+  </ng-container> -->
+  <div class="chartWrapperTeam">
+    <ngx-org-chart [nodes]="team" direction="vertical" ></ngx-org-chart>
+  </div>
   <div *ngIf="responseRecieved && !team">
     <p class="noDataFound">No Data Found</p>
   </div>
